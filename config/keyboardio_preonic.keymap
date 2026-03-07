@@ -16,27 +16,22 @@
 #define FN 3
 
 // 레이어 탭 설정: 스페이스나 백스페이스 연타 시 유용함
-
 &lt { quick_tap_ms = <200>; };
 
 // 블루투스 선택 매크로 정의
-
 #define BT(n) BT_SEL n
 
 // 하이퍼 키 (모든 모디파이어 키 조합)
-
 #define HYPER LC(LS(LA(LGUI)))
 
 / {
     chosen {
         // MIT 레이아웃 (2U 스페이스바) 또는 Ortho 레이아웃 선택 가능
-
         zmk,physical-layout = &mit_layout;
     };
 
     macros {
         // 블루투스 전환 시 RGB 색상 변경 매크로 (시각적 피드백)
-
         sw_bt1: sw_bt1 {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
@@ -82,14 +77,16 @@
         compatible = "zmk,keymap";
 
         // 기본 레이어 (Base)
-
         base_layer {
             label = "Base";
             bindings = <
-&kp PRINTSCREEN  &mo 3  &kp C_MUTE  &kp GRAVE  &kp N1  &kp N2  &kp N3  &kp N4  &kp N5  &kp N6  &kp N7  &kp N8  &kp N9  &kp N0  &kp BACKSPACE  &kp TAB  &kp Q  &kp W  &kp E  &kp R  &kp T  &kp Y  &kp U  &kp I  &kp O  &kp P  &kp BACKSLASH  &kp ESC  &kp A  &kp S  &kp D  &kp F  &kp G  &kp H  &kp J  &kp K  &kp L  &kp SEMI  &kp SQT  &kp LSHFT  &kp Z  &kp X  &kp C  &kp V  &kp B  &kp N  &kp M  &kp COMMA  &kp PERIOD  &kp SLASH  &kp ENTER  &kp LCTRL  &kp LGUI  &kp LALT  &kp LANG_HANGEUL  &mo 1  &kp SPACE  &mo 2  &kp LEFT  &kp DOWN  &kp UP  &kp RIGHT
+                                                                                                  &kp PRINTSCREEN  &mo 3        &kp C_MUTE
+&kp GRAVE  &kp N1     &kp N2    &kp N3    &kp N4    &kp N5    &kp N6    &kp N7    &kp N8     &kp N9      &kp N0           &kp BACKSPACE
+&kp TAB    &kp Q      &kp W     &kp E     &kp R     &kp T     &kp Y     &kp U     &kp I      &kp O       &kp P            &kp BACKSLASH
+&kp ESC    &kp A      &kp S     &kp D     &kp F     &kp G     &kp H     &kp J     &kp K      &kp L       &kp SEMI         &kp SQT
+&kp LSHFT  &kp Z      &kp X     &kp C     &kp V     &kp B     &kp N     &kp M     &kp COMMA  &kp PERIOD  &kp SLASH        &kp ENTER
+&kp LCTRL  &kp LGUI   &kp LALT  &kp LANG_HANGEUL    &mo 1     &kp SPACE &mo 2     &kp LEFT   &kp DOWN    &kp UP           &kp RIGHT
             >;
-
-            // 노브(엔코더) 설정: 볼륨 조절
 
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
@@ -97,7 +94,12 @@
         Lower_layer {
             label = "Lower";
             bindings = <
-&trans  &trans  &trans  &trans  &kp F1  &kp F2  &kp F3  &kp F4  &kp F5  &kp F6  &kp F7  &kp F8  &kp F9  &kp F10  &kp F11  &trans  &kp PAGE_UP  &kp HOME  &kp UP_ARROW  &kp END  &kp INSERT  &trans  &kp NUMBER_7  &kp NUMBER_8  &kp NUMBER_9  &kp KP_NUMLOCK  &kp F12  &kp CAPS  &kp PAGE_DOWN  &kp LEFT_ARROW  &kp DOWN_ARROW  &kp RIGHT_ARROW  &kp DELETE  &trans  &kp NUMBER_4  &kp NUMBER_5  &kp NUMBER_6  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &kp NUMBER_0  &kp NUMBER_0  &trans  &trans  &trans
+                                                                                                  &trans       &trans       &trans
+&trans     &trans     &trans    &trans    &kp F1    &kp F2    &kp F3    &kp F4    &kp F5     &kp F6      &kp F7           &kp F8
+&kp F9     &kp F10    &kp F11   &trans    &kp PAGE_UP &kp HOME &kp UP_ARROW &kp END &kp INSERT &trans      &kp NUMBER_7     &kp NUMBER_8
+&kp NUMBER_9 &kp KP_NUMLOCK &kp F12 &kp CAPS &kp PAGE_DOWN &kp LEFT_ARROW &kp DOWN_ARROW &kp RIGHT_ARROW &kp DELETE &trans &kp NUMBER_4 &kp NUMBER_5
+&kp NUMBER_6 &trans   &trans    &trans    &trans    &trans    &trans    &trans    &trans     &trans      &kp NUMBER_1     &kp NUMBER_2
+&kp NUMBER_3 &trans   &trans    &trans    &trans    &trans    &trans    &trans    &kp NUMBER_0 &kp NUMBER_0 &trans
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
@@ -106,7 +108,12 @@
         Raise_layer {
             label = "Raise";
             bindings = <
-&trans  &trans  &trans  &trans  &kp F1  &kp F2  &kp F3  &kp F4  &kp F5  &kp F6  &kp F7  &kp F8  &kp F9  &kp F10  &kp F11  &trans  &msc SCRL_UP  &mkp LCLK  &mmv MOVE_UP  &mkp RCLK  &mkp MB5  &trans  &kp MINUS  &kp EQUAL  &kp LEFT_BRACKET  &kp RIGHT_BRACKET  &kp F12  &kp CAPSLOCK  &msc SCRL_DOWN  &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &mkp MB4  &trans  &kp UNDERSCORE  &kp PLUS  &kp LEFT_BRACE  &kp RIGHT_BRACE  &trans  &trans  &trans  &msc SCRL_LEFT  &mkp MCLK  &msc SCRL_RIGHT  &trans  &trans  &trans  &trans  &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+                                                                                                  &trans       &trans       &trans
+&trans     &trans     &trans    &trans    &kp F1    &kp F2    &kp F3    &kp F4    &kp F5     &kp F6      &kp F7           &kp F8
+&kp F9     &kp F10    &kp F11   &trans    &msc SCRL_UP &mkp LCLK &mmv MOVE_UP &mkp RCLK &mkp MB5 &trans    &kp MINUS        &kp EQUAL
+&kp LEFT_BRACKET &kp RIGHT_BRACKET &kp F12 &kp CAPSLOCK &msc SCRL_DOWN &mmv MOVE_LEFT &mmv MOVE_DOWN &mmv MOVE_RIGHT &mkp MB4 &trans &kp UNDERSCORE &kp PLUS
+&kp LEFT_BRACE &kp RIGHT_BRACE &trans &trans &trans &msc SCRL_LEFT &mkp MCLK &msc SCRL_RIGHT &trans &trans &trans &trans
+&kp LEFT_PARENTHESIS &kp RIGHT_PARENTHESIS &trans &trans &trans &trans &trans &trans &trans &trans &trans
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
@@ -115,7 +122,12 @@
         func_layer {
             label = "Function";
             bindings = <
-&trans  &trans  &trans  &out OUT_TOG  &sw_bt1  &sw_bt2  &sw_bt3  &sw_bt4  &sw_bt5  &trans  &trans  &trans  &rgb_ug RGB_TOG  &rgb_ug RGB_BRD  &rgb_ug RGB_BRI  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &rgb_ug RGB_EFF  &rgb_ug RGB_EFR  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &bootloader  &trans  &trans  &trans  &studio_unlock  &trans  &trans  &trans  &trans  &trans  &bt BT_CLR
+                                                                                                  &trans       &trans       &trans
+&trans     &trans     &trans    &out OUT_TOG &sw_bt1 &sw_bt2  &sw_bt3   &sw_bt4   &sw_bt5    &trans      &trans           &trans
+&rgb_ug RGB_TOG &rgb_ug RGB_BRD &rgb_ug RGB_BRI &trans &trans &trans &trans &trans &trans &trans &trans &rgb_ug RGB_EFF
+&rgb_ug RGB_EFR &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
+&trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
+&bootloader &trans &trans &trans &studio_unlock &trans &trans &trans &trans &trans &bt BT_CLR
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
