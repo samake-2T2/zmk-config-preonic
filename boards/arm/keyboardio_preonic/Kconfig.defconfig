@@ -1,0 +1,6 @@
+if BOARD_KEYBOARDIO_PREONIC
+config BOARD
+	default "keyboardio_preonic"
+config ZMK_KEYBOARD_NAME
+	default "Keyboardio Preonic"
+endif
