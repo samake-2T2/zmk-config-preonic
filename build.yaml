@@ -1,2 +1,2 @@
 include:
-  - board: keyboardio_preonic@zmk
+  - board: keyboardio_preonic
