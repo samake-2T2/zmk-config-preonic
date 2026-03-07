@@ -1,0 +1,11 @@
+manifest:
+  remotes:
+    - name: keyboardio
+      url-base: https://github.com/keyboardio
+  projects:
+    - name: zmk
+      remote: keyboardio
+      revision: main
+      import: app/west.yml
+  self:
+    path: config
