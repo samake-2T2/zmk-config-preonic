@@ -4,47 +4,4 @@ on: [push, pull_request, workflow_dispatch]
 
 jobs:
   build:
-    runs-on: ubuntu-latest
-    container:
-      image: zmkfirmware/zmk-build-arm:stable
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Cache west modules
-        uses: actions/cache@v4
-        continue-on-error: true
-        with:
-          path: |
-            modules/
-            tools/
-            zephyr/
-            zmk/
-          key: ${{ runner.os }}-west-${{ hashFiles('**/west.yml') }}
-          restore-keys: |
-            ${{ runner.os }}-west-
-
-      - name: West Init
-        run: west init -l .
-
-      - name: West Update
-        run: west update
-
-      - name: West Export
-        run: west export
-
-      - name: West Zephyr export
-        run: west zephyr-export
-
-      - name: Build (Keyboardio Preonic)
-        run: |
-          west build -s zmk/app -b keyboardio_preonic -- -DZMK_CONFIG="${GITHUB_WORKSPACE}/config"
-
-      - name: Rename zmk.uf2
-        run: cp build/zephyr/zmk.uf2 keyboardio_preonic.uf2
-
-      - name: Archive artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: firmware
-          path: keyboardio_preonic.uf2
+    uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@main
