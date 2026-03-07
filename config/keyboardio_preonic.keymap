@@ -27,7 +27,7 @@
 / {
     chosen {
         // MIT 레이아웃 (2U 스페이스바) 또는 Ortho 레이아웃 선택 가능
-        zmk,physical-layout = &mit_layout;
+        zmk,matrix_transform = &mit_layout;
     };
 
     macros {
