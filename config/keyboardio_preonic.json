@@ -1,5 +1,6 @@
 {
     "name": "Keyboardio Preonic",
+    "features": ["encoders"],
     "layouts": {
         "default": {
             "layout": [
@@ -12,5 +13,8 @@
                 {"label": "HYPER", "x": 0, "y": 5}, {"label": "TRNS", "x": 1, "y": 5}, {"label": "LALT", "x": 2, "y": 5}, {"label": "LGUI", "x": 3, "y": 5}, {"label": "LOWER", "x": 4, "y": 5}, {"label": "SPACE", "x": 5, "y": 5, "w": 2}, {"label": "RAISE", "x": 7, "y": 5}, {"label": "LEFT", "x": 8, "y": 5}, {"label": "DOWN", "x": 9, "y": 5}, {"label": "UP", "x": 10, "y": 5}, {"label": "RIGHT", "x": 11, "y": 5}
             ]
         }
-    }
+    },
+    "sensors": [
+        {"x": 11.5, "y": 0, "radius": 0.5}
+    ]
 }
