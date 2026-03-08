@@ -131,28 +131,21 @@
 		#address-cells = <1>;
 		#size-cells = <1>;
 
-		/* SoftDevice/MBR 영역 (부트로더 예약) */
-		sd_partition: partition@0 {
-			label = "softdevice";
-			reg = <0x00000000 0x00026000>;
+		boot_partition: partition@0 {
+			label = "mcuboot";
+			reg = <0x00000000 0x00001000>;
 		};
-
-		/* 실제 펌웨어가 위치해야 할 코드 파티션 (0x26000 시작) */
-		code_partition: partition@26000 {
+		code_partition: partition@1000 {
 			label = "code_partition";
-			reg = <0x00026000 0x000c6000>;
+			reg = <0x00001000 0x000ec000>;
 		};
-
-		/* 설정 저장소 */
-		storage_partition: partition@ec000 {
+		storage_partition: partition@ed000 {
 			label = "storage";
-			reg = <0x000ec000 0x00008000>;
+			reg = <0x000ed000 0x00008000>;
 		};
-
-		/* 부트로더 영역 */
-		boot_partition: partition@f4000 {
+		bootloader_partition: partition@f5000 {
 			label = "adafruit_boot";
-			reg = <0x000f4000 0x0000c000>;
+			reg = <0x000f5000 0x0000b000>;
 		};
 	};
 };
