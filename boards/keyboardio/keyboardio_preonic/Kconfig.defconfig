@@ -1,4 +1,0 @@
-if BOARD_KEYBOARDIO_PREONIC
-config BOARD
-	default "keyboardio_preonic"
-endif
