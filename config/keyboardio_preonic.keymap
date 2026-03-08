@@ -11,88 +11,59 @@
 #include <dt-bindings/zmk/pointing.h>
 #include <dt-bindings/zmk/rgb.h>
 
-// 레이어 번호 정의
-#define BASE  0
-#define LOWER 1
-#define RAISE 2
-#define FN    3
+// 레이어 인덱스 정의
+#define L_BASE  0
+#define L_LOWER 1
+#define L_RAISE 2
+#define L_FN    3
 
-// 레이어 탭 설정: 스페이스나 백스페이스 연타 시 유용함
 &lt { quick_tap_ms = <200>; };
 
-// 블루투스 선택 매크로 정의
-#define BT(n) BT_SEL n
-
-// 하이퍼 키 (모든 모디파이어 키 조합)
-#define HYPER LC(LS(LA(LGUI)))
-
 / {
-    chosen {
-        zmk,matrix_transform = &mit_layout;
-    };
-
     macros {
-        // 블루투스 전환 시 RGB 색상 변경 매크로 (시각적 피드백)
         sw_bt1: sw_bt1 {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            wait-ms = <0>;
-            tap-ms = <0>;
-            bindings = <&rgb_ug RGB_COLOR_HSB(128,100,10) &bt BT(0)>;
+            bindings = <&rgb_ug RGB_COLOR_HSB(128,100,10) &bt BT_SEL 0>;
         };
-
         sw_bt2: sw_bt2 {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            wait-ms = <40>;
-            tap-ms = <40>;
-            bindings = <&rgb_ug RGB_COLOR_HSB(0,100,10) &bt BT(1)>;
+            bindings = <&rgb_ug RGB_COLOR_HSB(0,100,10) &bt BT_SEL 1>;
         };
-
         sw_bt3: sw_bt3 {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            wait-ms = <40>;
-            tap-ms = <40>;
-            bindings = <&rgb_ug RGB_COLOR_HSB(300,100,10) &bt BT(2)>;
+            bindings = <&rgb_ug RGB_COLOR_HSB(300,100,10) &bt BT_SEL 2>;
         };
-
         sw_bt4: sw_bt4 {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            wait-ms = <40>;
-            tap-ms = <40>;
-            bindings = <&rgb_ug RGB_COLOR_HSB(250,100,10) &bt BT(3)>;
+            bindings = <&rgb_ug RGB_COLOR_HSB(250,100,10) &bt BT_SEL 3>;
         };
-
         sw_bt5: sw_bt5 {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            wait-ms = <40>;
-            tap-ms = <40>;
-            bindings = <&rgb_ug RGB_COLOR_HSB(50,100,10) &bt BT(4)>;
+            bindings = <&rgb_ug RGB_COLOR_HSB(50,100,10) &bt BT_SEL 4>;
         };
     };
 
     keymap {
         compatible = "zmk,keymap";
 
-        // 기본 레이어 (0)
         base_layer {
             label = "Base";
             bindings = <
-                                                                                                  &kp PRINTSCREEN  &mo FN       &kp C_MUTE
+                                                                                                  &kp PRINTSCREEN  &mo L_FN     &kp C_MUTE
 &kp GRAVE  &kp N1     &kp N2    &kp N3    &kp N4    &kp N5    &kp N6    &kp N7    &kp N8     &kp N9      &kp N0           &kp BACKSPACE
 &kp TAB    &kp Q      &kp W     &kp E     &kp R     &kp T     &kp Y     &kp U     &kp I      &kp O       &kp P            &kp BACKSLASH
 &kp ESC    &kp A      &kp S     &kp D     &kp F     &kp G     &kp H     &kp J     &kp K      &kp L       &kp SEMI         &kp SQT
 &kp LSHFT  &kp Z      &kp X     &kp C     &kp V     &kp B     &kp N     &kp M     &kp COMMA  &kp PERIOD  &kp SLASH        &kp ENTER
-&kp LCTRL  &kp LGUI   &kp LALT  &kp LANG_HANGEUL    &mo LOWER &kp SPACE &mo RAISE &kp LEFT   &kp DOWN    &kp UP           &kp RIGHT
+&kp LCTRL  &kp LGUI   &kp LALT  &kp LANG_HANGEUL    &mo L_LOWER &kp SPACE &mo L_RAISE &kp LEFT   &kp DOWN    &kp UP           &kp RIGHT
             >;
-
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
 
-        // Lower 레이어 (1): F-키 및 유틸리티
         lower_layer {
             label = "Lower";
             bindings = <
@@ -103,11 +74,9 @@
 &trans     &trans     &trans    &trans    &trans    &trans    &trans    &trans    &trans     &trans      &kp END          &kp PG_DN
 &trans     &trans     &trans    &trans    &trans    &trans    &trans    &trans    &trans     &trans      &trans
             >;
-
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
 
-        // Raise 레이어 (2): 기호 및 마우스 제어
         raise_layer {
             label = "Raise";
             bindings = <
@@ -118,22 +87,19 @@
 &trans     &trans     &trans    &trans    &trans    &mkp LCLK &mkp MCLK &mkp RCLK &trans     &trans      &trans           &trans
 &trans     &trans     &trans    &trans    &trans    &trans    &trans    &trans    &trans     &trans      &trans
             >;
-
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
 
-        // Function 레이어 (3): 설정 및 하드웨어 제어
         func_layer {
             label = "Function";
             bindings = <
                                                                                                   &trans       &trans       &trans
-&trans     &trans     &trans    &out OUT_TOG &sw_bt1 &sw_bt2  &sw_bt3   &sw_bt4   &sw_bt5    &trans      &trans           &bt BT_CLR
+&trans     &trans     &trans    &out OUT_TOG &sw_bt1   &sw_bt2    &sw_bt3   &sw_bt4   &sw_bt5    &trans      &trans           &bt BT_CLR
 &rgb_ug RGB_TOG &rgb_ug RGB_BRD &rgb_ug RGB_BRI &rgb_ug RGB_EFF &rgb_ug RGB_EFR &trans &trans &trans &trans &trans &trans &trans
 &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
 &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
 &bootloader &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
             >;
-
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
     };
