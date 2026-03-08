@@ -1,0 +1,4 @@
+board:
+  name: keyboardio_preonic
+  vendor: keyboardio
+  soc: nrf52840_qiaa
