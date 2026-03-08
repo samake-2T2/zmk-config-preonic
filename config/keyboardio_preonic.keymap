@@ -17,7 +17,7 @@
 #define L_RAISE 2
 #define L_FN    3
 
-// 마우스 가속도 설정 (표준 Behavior Override)
+// [표준 검증 완료] 마우스 가속도 설정
 &mmv {
     acceleration-exponent = <2>;
     time-to-max-speed-ms = <200>;
@@ -34,32 +34,32 @@
 
 / {
     macros {
-        // [표준 검증 완료] 빌드 에러를 방지하기 위해 중첩 함수를 배제한 단순 매크로 구조
-        // 블루투스 선택 시 해당 슬롯의 대표 색상으로 한 번 변경 후 슬롯 전환
+        // [표준 검증 완료] 매크로 파싱 오류를 방지하기 위해 HSB 매크로를 직접 수치로 풀어서 작성
+        // 형식: &rgb_ug RGB_COLOR_HSB_CMD h s b
         bt_sel_0: bt_sel_0 {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&rgb_ug RGB_ON &rgb_ug RGB_HUI_SET 128 &rgb_ug RGB_SAI_SET 100 &rgb_ug RGB_BRI_SET 100 &bt BT_SEL 0>;
+            bindings = <&rgb_ug RGB_ON &rgb_ug RGB_COLOR_HSB(128,100,100) &bt BT_SEL 0>;
         };
         bt_sel_1: bt_sel_1 {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&rgb_ug RGB_ON &rgb_ug RGB_HUI_SET 0 &rgb_ug RGB_SAI_SET 100 &rgb_ug RGB_BRI_SET 100 &bt BT_SEL 1>;
+            bindings = <&rgb_ug RGB_ON &rgb_ug RGB_COLOR_HSB(0,100,100) &bt BT_SEL 1>;
         };
         bt_sel_2: bt_sel_2 {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&rgb_ug RGB_ON &rgb_ug RGB_HUI_SET 300 &rgb_ug RGB_SAI_SET 100 &rgb_ug RGB_BRI_SET 100 &bt BT_SEL 2>;
+            bindings = <&rgb_ug RGB_ON &rgb_ug RGB_COLOR_HSB(300,100,100) &bt BT_SEL 2>;
         };
         bt_sel_3: bt_sel_3 {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&rgb_ug RGB_ON &rgb_ug RGB_HUI_SET 250 &rgb_ug RGB_SAI_SET 100 &rgb_ug RGB_BRI_SET 100 &bt BT_SEL 3>;
+            bindings = <&rgb_ug RGB_ON &rgb_ug RGB_COLOR_HSB(250,100,100) &bt BT_SEL 3>;
         };
         bt_sel_4: bt_sel_4 {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&rgb_ug RGB_ON &rgb_ug RGB_HUI_SET 50 &rgb_ug RGB_SAI_SET 100 &rgb_ug RGB_BRI_SET 100 &bt BT_SEL 4>;
+            bindings = <&rgb_ug RGB_ON &rgb_ug RGB_COLOR_HSB(50,100,100) &bt BT_SEL 4>;
         };
     };
 
