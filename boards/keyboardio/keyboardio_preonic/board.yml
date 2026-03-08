@@ -1,5 +1,5 @@
 board:
-  name: preonic
+  name: keyboardio_preonic
   vendor: keyboardio
   socs:
     - name: nrf52840
