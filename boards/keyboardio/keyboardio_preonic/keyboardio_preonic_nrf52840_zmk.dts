@@ -16,7 +16,6 @@
 		zmk,kscan = &kscan0;
 		zmk,matrix_transform = &mit_layout;
 		zmk,underglow = &led_strip;
-        // zmk,battery = &vbatt; // 배터리 측정 노드가 정의되면 여기에 연결 (현재는 보류)
 	};
 
 	#define KRC(row, col) (((row) * 12) + (col))
@@ -78,7 +77,6 @@
 	};
 };
 
-// C 컴파일 에러 해결: ext-power는 루트가 아닌 gpio1 노드 내부에 존재하거나, 올바른 노드 식별을 거쳐야 함
 &gpio1 {
 	status = "okay";
 	butterfly_power: ext_power_gpio {
@@ -127,4 +125,9 @@
 		scratch_partition: partition@f8000 { label = "image-scratch"; reg = <0x000F8000 0x00006000>; };
 		storage_partition: partition@fe000 { label = "storage"; reg = <0x000FE000 0x00002000>; };
 	};
+};
+
+// Nordic nRF52 시리즈의 버튼/인코더 인터럽트 감지를 위한 필수 장치 활성화
+&gpiote {
+	status = "okay";
 };
