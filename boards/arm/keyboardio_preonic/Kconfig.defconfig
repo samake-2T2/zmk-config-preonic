@@ -6,7 +6,4 @@ config BOARD
 config ZMK_KEYBOARD_NAME
 	default "Keyboardio Preonic"
 
-# nRF52840 SoC를 위한 필수 설정값 포함
-source "soc/arm/nordic_nrf/nrf52/Kconfig.defconfig.series"
-
 endif
