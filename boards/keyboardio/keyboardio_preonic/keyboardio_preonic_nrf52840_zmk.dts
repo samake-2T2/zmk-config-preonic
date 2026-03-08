@@ -43,43 +43,441 @@
 		display-name = "Default Layout";
 		transform = <&mit_layout>;
 		kscan = <&kscan0>;
-		keys  // <가로길이 세로길이 X좌표 Y좌표>
-			// 0번째 줄 (상단 추가 3키: y=0) - 오른쪽으로 치우친 배치 가정
-			= <&key_physical_attrs 100 100 900 0>
-			, <&key_physical_attrs 100 100 1000 0>
-			, <&key_physical_attrs 100 100 1100 0>
+		keys = <&k0, &k1, &k2, &k3, &k4, &k5, &k6, &k7, &k8, &k9, &k10, &k11, &k12, &k13, &k14, &k15, &k16, &k17, &k18, &k19, &k20, &k21, &k22, &k23, &k24, &k25, &k26, &k27, &k28, &k29, &k30, &k31, &k32, &k33, &k34, &k35, &k36, &k37, &k38, &k39, &k40, &k41, &k42, &k43, &k44, &k45, &k46, &k47, &k48, &k49, &k50, &k51, &k52, &k53, &k54, &k55, &k56, &k57, &k58, &k59, &k60, &k61>;
+	};
 
-			// 1번째 줄 (y=100)
-			, <&key_physical_attrs 100 100 0 100>   , <&key_physical_attrs 100 100 100 100> , <&key_physical_attrs 100 100 200 100>
-			, <&key_physical_attrs 100 100 300 100> , <&key_physical_attrs 100 100 400 100> , <&key_physical_attrs 100 100 500 100>
-			, <&key_physical_attrs 100 100 600 100> , <&key_physical_attrs 100 100 700 100> , <&key_physical_attrs 100 100 800 100>
-			, <&key_physical_attrs 100 100 900 100> , <&key_physical_attrs 100 100 1000 100>, <&key_physical_attrs 100 100 1100 100>
+	k0: key_0 {
+		width = <100>;
+		height = <100>;
+		x = <900>;
+		y = <0>;
+	};
 
-			// 2번째 줄 (y=200)
-			, <&key_physical_attrs 100 100 0 200>   , <&key_physical_attrs 100 100 100 200> , <&key_physical_attrs 100 100 200 200>
-			, <&key_physical_attrs 100 100 300 200> , <&key_physical_attrs 100 100 400 200> , <&key_physical_attrs 100 100 500 200>
-			, <&key_physical_attrs 100 100 600 200> , <&key_physical_attrs 100 100 700 200> , <&key_physical_attrs 100 100 800 200>
-			, <&key_physical_attrs 100 100 900 200> , <&key_physical_attrs 100 100 1000 200>, <&key_physical_attrs 100 100 1100 200>
+	k1: key_1 {
+		width = <100>;
+		height = <100>;
+		x = <1000>;
+		y = <0>;
+	};
 
-			// 3번째 줄 (y=300)
-			, <&key_physical_attrs 100 100 0 300>   , <&key_physical_attrs 100 100 100 300> , <&key_physical_attrs 100 100 200 300>
-			, <&key_physical_attrs 100 100 300 300> , <&key_physical_attrs 100 100 400 300> , <&key_physical_attrs 100 100 500 300>
-			, <&key_physical_attrs 100 100 600 300> , <&key_physical_attrs 100 100 700 300> , <&key_physical_attrs 100 100 800 300>
-			, <&key_physical_attrs 100 100 900 300> , <&key_physical_attrs 100 100 1000 300>, <&key_physical_attrs 100 100 1100 300>
+	k2: key_2 {
+		width = <100>;
+		height = <100>;
+		x = <1100>;
+		y = <0>;
+	};
 
-			// 4번째 줄 (y=400)
-			, <&key_physical_attrs 100 100 0 400>   , <&key_physical_attrs 100 100 100 400> , <&key_physical_attrs 100 100 200 400>
-			, <&key_physical_attrs 100 100 300 400> , <&key_physical_attrs 100 100 400 400> , <&key_physical_attrs 100 100 500 400>
-			, <&key_physical_attrs 100 100 600 400> , <&key_physical_attrs 100 100 700 400> , <&key_physical_attrs 100 100 800 400>
-			, <&key_physical_attrs 100 100 900 400> , <&key_physical_attrs 100 100 1000 400>, <&key_physical_attrs 100 100 1100 400>
+	k3: key_3 {
+		width = <100>;
+		height = <100>;
+		x = <0>;
+		y = <100>;
+	};
 
-			// 5번째 줄 (y=500, 중앙에 200 폭의 2U 스페이스바)
-			, <&key_physical_attrs 100 100 0 500>   , <&key_physical_attrs 100 100 100 500> , <&key_physical_attrs 100 100 200 500>
-			, <&key_physical_attrs 100 100 300 500> , <&key_physical_attrs 100 100 400 500> 
-			, <&key_physical_attrs 200 100 500 500> // 2U Spacebar
-			, <&key_physical_attrs 100 100 700 500> , <&key_physical_attrs 100 100 800 500>
-			, <&key_physical_attrs 100 100 900 500> , <&key_physical_attrs 100 100 1000 500>, <&key_physical_attrs 100 100 1100 500>
-			;
+	k4: key_4 {
+		width = <100>;
+		height = <100>;
+		x = <100>;
+		y = <100>;
+	};
+
+	k5: key_5 {
+		width = <100>;
+		height = <100>;
+		x = <200>;
+		y = <100>;
+	};
+
+	k6: key_6 {
+		width = <100>;
+		height = <100>;
+		x = <300>;
+		y = <100>;
+	};
+
+	k7: key_7 {
+		width = <100>;
+		height = <100>;
+		x = <400>;
+		y = <100>;
+	};
+
+	k8: key_8 {
+		width = <100>;
+		height = <100>;
+		x = <500>;
+		y = <100>;
+	};
+
+	k9: key_9 {
+		width = <100>;
+		height = <100>;
+		x = <600>;
+		y = <100>;
+	};
+
+	k10: key_10 {
+		width = <100>;
+		height = <100>;
+		x = <700>;
+		y = <100>;
+	};
+
+	k11: key_11 {
+		width = <100>;
+		height = <100>;
+		x = <800>;
+		y = <100>;
+	};
+
+	k12: key_12 {
+		width = <100>;
+		height = <100>;
+		x = <900>;
+		y = <100>;
+	};
+
+	k13: key_13 {
+		width = <100>;
+		height = <100>;
+		x = <1000>;
+		y = <100>;
+	};
+
+	k14: key_14 {
+		width = <100>;
+		height = <100>;
+		x = <1100>;
+		y = <100>;
+	};
+
+	k15: key_15 {
+		width = <100>;
+		height = <100>;
+		x = <0>;
+		y = <200>;
+	};
+
+	k16: key_16 {
+		width = <100>;
+		height = <100>;
+		x = <100>;
+		y = <200>;
+	};
+
+	k17: key_17 {
+		width = <100>;
+		height = <100>;
+		x = <200>;
+		y = <200>;
+	};
+
+	k18: key_18 {
+		width = <100>;
+		height = <100>;
+		x = <300>;
+		y = <200>;
+	};
+
+	k19: key_19 {
+		width = <100>;
+		height = <100>;
+		x = <400>;
+		y = <200>;
+	};
+
+	k20: key_20 {
+		width = <100>;
+		height = <100>;
+		x = <500>;
+		y = <200>;
+	};
+
+	k21: key_21 {
+		width = <100>;
+		height = <100>;
+		x = <600>;
+		y = <200>;
+	};
+
+	k22: key_22 {
+		width = <100>;
+		height = <100>;
+		x = <700>;
+		y = <200>;
+	};
+
+	k23: key_23 {
+		width = <100>;
+		height = <100>;
+		x = <800>;
+		y = <200>;
+	};
+
+	k24: key_24 {
+		width = <100>;
+		height = <100>;
+		x = <900>;
+		y = <200>;
+	};
+
+	k25: key_25 {
+		width = <100>;
+		height = <100>;
+		x = <1000>;
+		y = <200>;
+	};
+
+	k26: key_26 {
+		width = <100>;
+		height = <100>;
+		x = <1100>;
+		y = <200>;
+	};
+
+	k27: key_27 {
+		width = <100>;
+		height = <100>;
+		x = <0>;
+		y = <300>;
+	};
+
+	k28: key_28 {
+		width = <100>;
+		height = <100>;
+		x = <100>;
+		y = <300>;
+	};
+
+	k29: key_29 {
+		width = <100>;
+		height = <100>;
+		x = <200>;
+		y = <300>;
+	};
+
+	k30: key_30 {
+		width = <100>;
+		height = <100>;
+		x = <300>;
+		y = <300>;
+	};
+
+	k31: key_31 {
+		width = <100>;
+		height = <100>;
+		x = <400>;
+		y = <300>;
+	};
+
+	k32: key_32 {
+		width = <100>;
+		height = <100>;
+		x = <500>;
+		y = <300>;
+	};
+
+	k33: key_33 {
+		width = <100>;
+		height = <100>;
+		x = <600>;
+		y = <300>;
+	};
+
+	k34: key_34 {
+		width = <100>;
+		height = <100>;
+		x = <700>;
+		y = <300>;
+	};
+
+	k35: key_35 {
+		width = <100>;
+		height = <100>;
+		x = <800>;
+		y = <300>;
+	};
+
+	k36: key_36 {
+		width = <100>;
+		height = <100>;
+		x = <900>;
+		y = <300>;
+	};
+
+	k37: key_37 {
+		width = <100>;
+		height = <100>;
+		x = <1000>;
+		y = <300>;
+	};
+
+	k38: key_38 {
+		width = <100>;
+		height = <100>;
+		x = <1100>;
+		y = <300>;
+	};
+
+	k39: key_39 {
+		width = <100>;
+		height = <100>;
+		x = <0>;
+		y = <400>;
+	};
+
+	k40: key_40 {
+		width = <100>;
+		height = <100>;
+		x = <100>;
+		y = <400>;
+	};
+
+	k41: key_41 {
+		width = <100>;
+		height = <100>;
+		x = <200>;
+		y = <400>;
+	};
+
+	k42: key_42 {
+		width = <100>;
+		height = <100>;
+		x = <300>;
+		y = <400>;
+	};
+
+	k43: key_43 {
+		width = <100>;
+		height = <100>;
+		x = <400>;
+		y = <400>;
+	};
+
+	k44: key_44 {
+		width = <100>;
+		height = <100>;
+		x = <500>;
+		y = <400>;
+	};
+
+	k45: key_45 {
+		width = <100>;
+		height = <100>;
+		x = <600>;
+		y = <400>;
+	};
+
+	k46: key_46 {
+		width = <100>;
+		height = <100>;
+		x = <700>;
+		y = <400>;
+	};
+
+	k47: key_47 {
+		width = <100>;
+		height = <100>;
+		x = <800>;
+		y = <400>;
+	};
+
+	k48: key_48 {
+		width = <100>;
+		height = <100>;
+		x = <900>;
+		y = <400>;
+	};
+
+	k49: key_49 {
+		width = <100>;
+		height = <100>;
+		x = <1000>;
+		y = <400>;
+	};
+
+	k50: key_50 {
+		width = <100>;
+		height = <100>;
+		x = <1100>;
+		y = <400>;
+	};
+
+	k51: key_51 {
+		width = <100>;
+		height = <100>;
+		x = <0>;
+		y = <500>;
+	};
+
+	k52: key_52 {
+		width = <100>;
+		height = <100>;
+		x = <100>;
+		y = <500>;
+	};
+
+	k53: key_53 {
+		width = <100>;
+		height = <100>;
+		x = <200>;
+		y = <500>;
+	};
+
+	k54: key_54 {
+		width = <100>;
+		height = <100>;
+		x = <300>;
+		y = <500>;
+	};
+
+	k55: key_55 {
+		width = <100>;
+		height = <100>;
+		x = <400>;
+		y = <500>;
+	};
+
+	k56: key_56 {
+		width = <200>;
+		height = <100>;
+		x = <500>;
+		y = <500>;
+	};
+
+	k57: key_57 {
+		width = <100>;
+		height = <100>;
+		x = <700>;
+		y = <500>;
+	};
+
+	k58: key_58 {
+		width = <100>;
+		height = <100>;
+		x = <800>;
+		y = <500>;
+	};
+
+	k59: key_59 {
+		width = <100>;
+		height = <100>;
+		x = <900>;
+		y = <500>;
+	};
+
+	k60: key_60 {
+		width = <100>;
+		height = <100>;
+		x = <1000>;
+		y = <500>;
+	};
+
+	k61: key_61 {
+		width = <100>;
+		height = <100>;
+		x = <1100>;
+		y = <500>;
 	};
 
 	kscan0: kscan {
