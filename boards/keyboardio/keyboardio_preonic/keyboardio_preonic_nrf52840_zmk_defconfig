@@ -17,10 +17,9 @@ CONFIG_ZMK_BLE=y
 CONFIG_EC11=y
 CONFIG_EC11_TRIGGER_GLOBAL_THREAD=y
 
-# 추가 편의 기능 (마우스 포인터, 절전, ZMK Studio)
+# 추가 편의 기능 (마우스 포인터, 절전)
 CONFIG_ZMK_POINTING=y
 CONFIG_ZMK_SLEEP=y
-CONFIG_ZMK_STUDIO=y
 
 # Butterfly LEDs use ZMK's "underglow" feature
 CONFIG_ZMK_RGB_UNDERGLOW=y

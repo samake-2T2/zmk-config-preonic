@@ -26,8 +26,7 @@
 
 / {
     chosen {
-        // ZMK Studio를 위한 물리적 레이아웃 연결 (matrix_transform 대신 사용)
-        zmk,physical-layout = &physical_layout0;
+        zmk,matrix_transform = &mit_layout;
     };
 
     macros {
