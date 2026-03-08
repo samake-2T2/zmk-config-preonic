@@ -1,0 +1,2 @@
+# Minimal Kconfig for Keyboardio Preonic ZMK Module
+osource "boards/Kconfig"
