@@ -15,7 +15,6 @@
 		zephyr,flash = &flash0;
 		zmk,kscan = &kscan0;
 		zmk,matrix_transform = &mit_layout;
-		zmk,physical-layout = &phys_layout0;
 		zmk,underglow = &led_strip;
 	};
 
@@ -33,87 +32,6 @@
 			KRC(4,0) KRC(4,1) KRC(4,2) KRC(4,3) KRC(4,4) KRC(4,5) KRC(4,6) KRC(4,7) KRC(4,8) KRC(4,9) KRC(4,10) KRC(4,11)
 			KRC(5,0) KRC(5,1) KRC(5,2) KRC(5,3) KRC(5,4)     KRC(5,6)     KRC(5,7) KRC(5,8) KRC(5,9) KRC(5,10) KRC(5,11)
 		>;
-	};
-
-	phys_layout0: phys_layout_0 {
-		compatible = "zmk,physical-layout";
-		display-name = "Default Layout";
-		transform = <&mit_layout>;
-		kscan = <&kscan0>;
-		keys = <
-			&key_physical_attrs 100 100 900 0   // Row 0, Col 9 (PRINTSCREEN)
-			&key_physical_attrs 100 100 1000 0  // Row 0, Col 10 (FN)
-			&key_physical_attrs 100 100 1100 0  // Row 0, Col 11 (C_MUTE)
-
-			&key_physical_attrs 100 100 0 100   // Row 1
-			&key_physical_attrs 100 100 100 100
-			&key_physical_attrs 100 100 200 100
-			&key_physical_attrs 100 100 300 100
-			&key_physical_attrs 100 100 400 100
-			&key_physical_attrs 100 100 500 100
-			&key_physical_attrs 100 100 600 100
-			&key_physical_attrs 100 100 700 100
-			&key_physical_attrs 100 100 800 100
-			&key_physical_attrs 100 100 900 100
-			&key_physical_attrs 100 100 1000 100
-			&key_physical_attrs 100 100 1100 100
-
-			&key_physical_attrs 100 100 0 200   // Row 2
-			&key_physical_attrs 100 100 100 200
-			&key_physical_attrs 100 100 200 200
-			&key_physical_attrs 100 100 300 200
-			&key_physical_attrs 100 100 400 200
-			&key_physical_attrs 100 100 500 200
-			&key_physical_attrs 100 100 600 200
-			&key_physical_attrs 100 100 700 200
-			&key_physical_attrs 100 100 800 200
-			&key_physical_attrs 100 100 900 200
-			&key_physical_attrs 100 100 1000 200
-			&key_physical_attrs 100 100 1100 200
-
-			&key_physical_attrs 100 100 0 300   // Row 3
-			&key_physical_attrs 100 100 100 300
-			&key_physical_attrs 100 100 200 300
-			&key_physical_attrs 100 100 300 300
-			&key_physical_attrs 100 100 400 300
-			&key_physical_attrs 100 100 500 300
-			&key_physical_attrs 100 100 600 300
-			&key_physical_attrs 100 100 700 300
-			&key_physical_attrs 100 100 800 300
-			&key_physical_attrs 100 100 900 300
-			&key_physical_attrs 100 100 1000 300
-			&key_physical_attrs 100 100 1100 300
-
-			&key_physical_attrs 100 100 0 400   // Row 4
-			&key_physical_attrs 100 100 100 400
-			&key_physical_attrs 100 100 200 400
-			&key_physical_attrs 100 100 300 400
-			&key_physical_attrs 100 100 400 400
-			&key_physical_attrs 100 100 500 400
-			&key_physical_attrs 100 100 600 400
-			&key_physical_attrs 100 100 700 400
-			&key_physical_attrs 100 100 800 400
-			&key_physical_attrs 100 100 900 400
-			&key_physical_attrs 100 100 1000 400
-			&key_physical_attrs 100 100 1100 400
-
-			&key_physical_attrs 100 100 0 500   // Row 5
-			&key_physical_attrs 100 100 100 500
-			&key_physical_attrs 100 100 200 500
-			&key_physical_attrs 100 100 300 500
-			&key_physical_attrs 100 100 400 500
-			&key_physical_attrs 200 100 500 500 // MIT Space (2u)
-			&key_physical_attrs 100 100 700 500
-			&key_physical_attrs 100 100 800 500
-			&key_physical_attrs 100 100 900 500
-			&key_physical_attrs 100 100 1000 500
-			&key_physical_attrs 100 100 1100 500
-		>;
-	};
-
-	key_physical_attrs: key_physical_attrs {
-		compatible = "zmk,key-physical-attrs";
-		#key-physical-attrs-cells = <4>;
 	};
 
 	kscan0: kscan {
