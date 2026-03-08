@@ -77,6 +77,11 @@
 	};
 };
 
+// 필수: gpio0과 gpio1 포트를 모두 활성화해야 합니다.
+&gpio0 {
+	status = "okay";
+};
+
 &gpio1 {
 	status = "okay";
 	butterfly_power: ext_power_gpio {
