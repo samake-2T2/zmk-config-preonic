@@ -19,8 +19,8 @@
 
 // [표준 검증] 마우스 이동 및 가속도 설정 (Behavior Override)
 &mmv {
-    acceleration-exponent = <2>;      // 가속 곡선을 더 가파르게 (기본 1)
-    time-to-max-speed-ms = <200>;    // 최대 속도 도달 시간 단축 (300ms -> 200ms)
+    acceleration-exponent = <2>;
+    time-to-max-speed-ms = <200>;
     delay-ms = <0>;
 };
 
@@ -34,44 +34,44 @@
 
 / {
     macros {
-        // [표준 검증] 블루투스 전환 시 깜빡임 피드백 (OFF -> Color -> OFF -> Color 순서)
+        // [표준 검증] 블루투스 전환 시 깜빡임 피드백 (HSB 밝기를 0과 80으로 교차)
         bt_sel_0: bt_sel_0 {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             wait-ms = <100>;
-            bindings = <&rgb_ug RGB_OFF &rgb_ug RGB_COLOR_HSB(128,100,10) &rgb_ug RGB_OFF &rgb_ug RGB_COLOR_HSB(128,100,10) &bt BT_SEL 0>;
+            bindings = <&rgb_ug RGB_ON &rgb_ug RGB_COLOR_HSB(128,100,0) &rgb_ug RGB_COLOR_HSB(128,100,80) &rgb_ug RGB_COLOR_HSB(128,100,0) &rgb_ug RGB_COLOR_HSB(128,100,80) &bt BT_SEL 0>;
         };
         bt_sel_1: bt_sel_1 {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             wait-ms = <100>;
-            bindings = <&rgb_ug RGB_OFF &rgb_ug RGB_COLOR_HSB(0,100,10) &rgb_ug RGB_OFF &rgb_ug RGB_COLOR_HSB(0,100,10) &bt BT_SEL 1>;
+            bindings = <&rgb_ug RGB_ON &rgb_ug RGB_COLOR_HSB(0,100,0) &rgb_ug RGB_COLOR_HSB(0,100,80) &rgb_ug RGB_COLOR_HSB(0,100,0) &rgb_ug RGB_COLOR_HSB(0,100,80) &bt BT_SEL 1>;
         };
         bt_sel_2: bt_sel_2 {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             wait-ms = <100>;
-            bindings = <&rgb_ug RGB_OFF &rgb_ug RGB_COLOR_HSB(300,100,10) &rgb_ug RGB_OFF &rgb_ug RGB_COLOR_HSB(300,100,10) &bt BT_SEL 2>;
+            bindings = <&rgb_ug RGB_ON &rgb_ug RGB_COLOR_HSB(300,100,0) &rgb_ug RGB_COLOR_HSB(300,100,80) &rgb_ug RGB_COLOR_HSB(300,100,0) &rgb_ug RGB_COLOR_HSB(300,100,80) &bt BT_SEL 2>;
         };
         bt_sel_3: bt_sel_3 {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             wait-ms = <100>;
-            bindings = <&rgb_ug RGB_OFF &rgb_ug RGB_COLOR_HSB(250,100,10) &rgb_ug RGB_OFF &rgb_ug RGB_COLOR_HSB(250,100,10) &bt BT_SEL 3>;
+            bindings = <&rgb_ug RGB_ON &rgb_ug RGB_COLOR_HSB(250,100,0) &rgb_ug RGB_COLOR_HSB(250,100,80) &rgb_ug RGB_COLOR_HSB(250,100,0) &rgb_ug RGB_COLOR_HSB(250,100,80) &bt BT_SEL 3>;
         };
         bt_sel_4: bt_sel_4 {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             wait-ms = <100>;
-            bindings = <&rgb_ug RGB_OFF &rgb_ug RGB_COLOR_HSB(50,100,10) &rgb_ug RGB_OFF &rgb_ug RGB_COLOR_HSB(50,100,10) &bt BT_SEL 4>;
+            bindings = <&rgb_ug RGB_ON &rgb_ug RGB_COLOR_HSB(50,100,0) &rgb_ug RGB_COLOR_HSB(50,100,80) &rgb_ug RGB_COLOR_HSB(50,100,0) &rgb_ug RGB_COLOR_HSB(50,100,80) &bt BT_SEL 4>;
         };
 
-        // [표준 검증] 페어링 기록 삭제 시 빨간색 깜빡임 피드백 (Pairing Mode 진입 준비 알림)
+        // [표준 검증] 페어링 기록 삭제 시 빨간색 깜빡임 피드백 (밝기 최대)
         bt_clr_blink: bt_clr_blink {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             wait-ms = <150>;
-            bindings = <&rgb_ug RGB_COLOR_HSB(0,100,100) &rgb_ug RGB_OFF &rgb_ug RGB_COLOR_HSB(0,100,100) &rgb_ug RGB_OFF &rgb_ug RGB_COLOR_HSB(0,100,100) &bt BT_CLR>;
+            bindings = <&rgb_ug RGB_ON &rgb_ug RGB_COLOR_HSB(0,100,100) &rgb_ug RGB_COLOR_HSB(0,100,0) &rgb_ug RGB_COLOR_HSB(0,100,100) &rgb_ug RGB_COLOR_HSB(0,100,0) &rgb_ug RGB_COLOR_HSB(0,100,100) &bt BT_CLR>;
         };
     };
 
