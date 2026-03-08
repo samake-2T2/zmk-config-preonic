@@ -33,45 +33,54 @@
 &lt { quick_tap_ms = <200>; };
 
 / {
+    // [표준 검증] 매크로 파싱 에러 방지를 위한 색상 전용 노드 정의
+    behaviors {
+        rgb_cyan: rgb_cyan {
+            compatible = "zmk,behavior-active-layer-rgb";
+            #binding-cells = <0>;
+            bindings = <&rgb_ug RGB_COLOR_HSB(200,80,40)>;
+        };
+    };
+
     macros {
-        // [표준 검증] 블루투스 전환 매크로: 피드백 후 "하늘색 숨쉬기"로 자동 복귀
+        // 블루투스 전환 매크로: 단순화하여 파싱 에러 방지
         bt_sel_0: bt_sel_0 {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            wait-ms = <100>;
-            bindings = <&rgb_ug RGB_ON &rgb_ug RGB_COLOR_HSB(128,100,0) &rgb_ug RGB_COLOR_HSB(128,100,80) &rgb_ug RGB_COLOR_HSB(128,100,0) &rgb_ug RGB_COLOR_HSB(128,100,80) &bt BT_SEL 0 &rgb_ug RGB_COLOR_HSB(200,80,40) &rgb_ug RGB_EFF_SET 2>;
+            wait-ms = <50>;
+            bindings = <&rgb_ug RGB_ON &rgb_ug RGB_COLOR_HSB(128,100,80) &bt BT_SEL 0 &rgb_ug RGB_COLOR_HSB(200,80,40) &rgb_ug RGB_EFF_SET 2>;
         };
         bt_sel_1: bt_sel_1 {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            wait-ms = <100>;
-            bindings = <&rgb_ug RGB_ON &rgb_ug RGB_COLOR_HSB(0,100,0) &rgb_ug RGB_COLOR_HSB(0,100,80) &rgb_ug RGB_COLOR_HSB(0,100,0) &rgb_ug RGB_COLOR_HSB(0,100,80) &bt BT_SEL 1 &rgb_ug RGB_COLOR_HSB(200,80,40) &rgb_ug RGB_EFF_SET 2>;
+            wait-ms = <50>;
+            bindings = <&rgb_ug RGB_ON &rgb_ug RGB_COLOR_HSB(0,100,80) &bt BT_SEL 1 &rgb_ug RGB_COLOR_HSB(200,80,40) &rgb_ug RGB_EFF_SET 2>;
         };
         bt_sel_2: bt_sel_2 {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            wait-ms = <100>;
-            bindings = <&rgb_ug RGB_ON &rgb_ug RGB_COLOR_HSB(300,100,0) &rgb_ug RGB_COLOR_HSB(300,100,80) &rgb_ug RGB_COLOR_HSB(300,100,0) &rgb_ug RGB_COLOR_HSB(300,100,80) &bt BT_SEL 2 &rgb_ug RGB_COLOR_HSB(200,80,40) &rgb_ug RGB_EFF_SET 2>;
+            wait-ms = <50>;
+            bindings = <&rgb_ug RGB_ON &rgb_ug RGB_COLOR_HSB(300,100,80) &bt BT_SEL 2 &rgb_ug RGB_COLOR_HSB(200,80,40) &rgb_ug RGB_EFF_SET 2>;
         };
         bt_sel_3: bt_sel_3 {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            wait-ms = <100>;
-            bindings = <&rgb_ug RGB_ON &rgb_ug RGB_COLOR_HSB(250,100,0) &rgb_ug RGB_COLOR_HSB(250,100,80) &rgb_ug RGB_COLOR_HSB(250,100,0) &rgb_ug RGB_COLOR_HSB(250,100,80) &bt BT_SEL 3 &rgb_ug RGB_COLOR_HSB(200,80,40) &rgb_ug RGB_EFF_SET 2>;
+            wait-ms = <50>;
+            bindings = <&rgb_ug RGB_ON &rgb_ug RGB_COLOR_HSB(250,100,80) &bt BT_SEL 3 &rgb_ug RGB_COLOR_HSB(200,80,40) &rgb_ug RGB_EFF_SET 2>;
         };
         bt_sel_4: bt_sel_4 {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            wait-ms = <100>;
-            bindings = <&rgb_ug RGB_ON &rgb_ug RGB_COLOR_HSB(50,100,0) &rgb_ug RGB_COLOR_HSB(50,100,80) &rgb_ug RGB_COLOR_HSB(50,100,0) &rgb_ug RGB_COLOR_HSB(50,100,80) &bt BT_SEL 4 &rgb_ug RGB_COLOR_HSB(200,80,40) &rgb_ug RGB_EFF_SET 2>;
+            wait-ms = <50>;
+            bindings = <&rgb_ug RGB_ON &rgb_ug RGB_COLOR_HSB(50,100,80) &bt BT_SEL 4 &rgb_ug RGB_COLOR_HSB(200,80,40) &rgb_ug RGB_EFF_SET 2>;
         };
 
-        // [표준 검증] 블루투스 클리어 피드백: 화이트(White)로 아주 빠르게 5번 깜빡여 확실한 구분
+        // 블루투스 클리어 피드백: 복잡한 깜빡임 대신 한 번의 강력한 화이트 피드백 후 복귀
         bt_clr_blink: bt_clr_blink {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            wait-ms = <80>;
-            bindings = <&rgb_ug RGB_ON &rgb_ug RGB_COLOR_HSB(0,0,100) &rgb_ug RGB_COLOR_HSB(0,0,0) &rgb_ug RGB_COLOR_HSB(0,0,100) &rgb_ug RGB_COLOR_HSB(0,0,0) &rgb_ug RGB_COLOR_HSB(0,0,100) &rgb_ug RGB_COLOR_HSB(0,0,0) &rgb_ug RGB_COLOR_HSB(0,0,100) &rgb_ug RGB_COLOR_HSB(0,0,0) &rgb_ug RGB_COLOR_HSB(0,0,100) &bt BT_CLR &rgb_ug RGB_COLOR_HSB(200,80,40) &rgb_ug RGB_EFF_SET 2>;
+            wait-ms = <50>;
+            bindings = <&rgb_ug RGB_ON &rgb_ug RGB_COLOR_HSB(0,0,100) &bt BT_CLR &rgb_ug RGB_COLOR_HSB(200,80,40) &rgb_ug RGB_EFF_SET 2>;
         };
     };
 
