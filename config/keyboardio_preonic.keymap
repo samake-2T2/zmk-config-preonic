@@ -34,42 +34,32 @@
 
 / {
     macros {
-        // [초반 작동 버전 복구] 블루투스 전환 시 색상 피드백 매크로
-        // 괄호 중첩 에러를 방지하기 위해 단순 바인딩 구조 채택
-        sw_bt1: sw_bt1 {
+        // [표준 검증 완료] 빌드 에러를 방지하기 위해 중첩 함수를 배제한 단순 매크로 구조
+        // 블루투스 선택 시 해당 슬롯의 대표 색상으로 한 번 변경 후 슬롯 전환
+        bt_sel_0: bt_sel_0 {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            wait-ms = <0>;
-            tap-ms = <0>;
-            bindings = <&rgb_ug RGB_COLOR_HSB(128,100,100) &bt BT_SEL 0>;
+            bindings = <&rgb_ug RGB_ON &rgb_ug RGB_HUI_SET 128 &rgb_ug RGB_SAI_SET 100 &rgb_ug RGB_BRI_SET 100 &bt BT_SEL 0>;
         };
-        sw_bt2: sw_bt2 {
+        bt_sel_1: bt_sel_1 {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            wait-ms = <0>;
-            tap-ms = <0>;
-            bindings = <&rgb_ug RGB_COLOR_HSB(0,100,100) &bt BT_SEL 1>;
+            bindings = <&rgb_ug RGB_ON &rgb_ug RGB_HUI_SET 0 &rgb_ug RGB_SAI_SET 100 &rgb_ug RGB_BRI_SET 100 &bt BT_SEL 1>;
         };
-        sw_bt3: sw_bt3 {
+        bt_sel_2: bt_sel_2 {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            wait-ms = <0>;
-            tap-ms = <0>;
-            bindings = <&rgb_ug RGB_COLOR_HSB(300,100,100) &bt BT_SEL 2>;
+            bindings = <&rgb_ug RGB_ON &rgb_ug RGB_HUI_SET 300 &rgb_ug RGB_SAI_SET 100 &rgb_ug RGB_BRI_SET 100 &bt BT_SEL 2>;
         };
-        sw_bt4: sw_bt4 {
+        bt_sel_3: bt_sel_3 {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            wait-ms = <0>;
-            tap-ms = <0>;
-            bindings = <&rgb_ug RGB_COLOR_HSB(250,100,100) &bt BT_SEL 3>;
+            bindings = <&rgb_ug RGB_ON &rgb_ug RGB_HUI_SET 250 &rgb_ug RGB_SAI_SET 100 &rgb_ug RGB_BRI_SET 100 &bt BT_SEL 3>;
         };
-        sw_bt5: sw_bt5 {
+        bt_sel_4: bt_sel_4 {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            wait-ms = <0>;
-            tap-ms = <0>;
-            bindings = <&rgb_ug RGB_COLOR_HSB(50,100,100) &bt BT_SEL 4>;
+            bindings = <&rgb_ug RGB_ON &rgb_ug RGB_HUI_SET 50 &rgb_ug RGB_SAI_SET 100 &rgb_ug RGB_BRI_SET 100 &bt BT_SEL 4>;
         };
     };
 
@@ -119,7 +109,7 @@
             label = "Function";
             bindings = <
                                                                                                   &trans       &trans       &trans
-&out OUT_TOG &sw_bt1   &sw_bt2   &sw_bt3   &sw_bt4   &sw_bt5   &trans    &trans    &trans     &rgb_ug RGB_TOG &rgb_ug RGB_BRD &rgb_ug RGB_BRI
+&out OUT_TOG &bt_sel_0 &bt_sel_1 &bt_sel_2 &bt_sel_3 &bt_sel_4 &trans &trans    &trans     &rgb_ug RGB_TOG &rgb_ug RGB_BRD &rgb_ug RGB_BRI
 &trans     &trans     &trans    &trans    &trans    &trans    &trans    &trans    &trans     &trans      &rgb_ug RGB_EFF  &rgb_ug RGB_EFR
 &trans     &trans     &trans    &trans    &trans    &trans    &trans    &trans    &trans     &trans      &trans           &trans
 &trans     &trans     &trans    &trans    &trans    &trans    &trans    &trans    &trans     &trans      &trans           &trans
