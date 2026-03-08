@@ -71,14 +71,7 @@
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             wait-ms = <80>;
-            bindings = <&rgb_ug RGB_ON 
-                        &rgb_ug RGB_COLOR_HSB(0,0,100) &rgb_ug RGB_COLOR_HSB(0,0,0) 
-                        &rgb_ug RGB_COLOR_HSB(0,0,100) &rgb_ug RGB_COLOR_HSB(0,0,0) 
-                        &rgb_ug RGB_COLOR_HSB(0,0,100) &rgb_ug RGB_COLOR_HSB(0,0,0) 
-                        &rgb_ug RGB_COLOR_HSB(0,0,100) &rgb_ug RGB_COLOR_HSB(0,0,0) 
-                        &rgb_ug RGB_COLOR_HSB(0,0,100) 
-                        &bt BT_CLR 
-                        &rgb_ug RGB_COLOR_HSB(200,80,40) &rgb_ug RGB_EFF_SET 2>;
+            bindings = <&rgb_ug RGB_ON &rgb_ug RGB_COLOR_HSB(0,0,100) &rgb_ug RGB_COLOR_HSB(0,0,0) &rgb_ug RGB_COLOR_HSB(0,0,100) &rgb_ug RGB_COLOR_HSB(0,0,0) &rgb_ug RGB_COLOR_HSB(0,0,100) &rgb_ug RGB_COLOR_HSB(0,0,0) &rgb_ug RGB_COLOR_HSB(0,0,100) &rgb_ug RGB_COLOR_HSB(0,0,0) &rgb_ug RGB_COLOR_HSB(0,0,100) &bt BT_CLR &rgb_ug RGB_COLOR_HSB(200,80,40) &rgb_ug RGB_EFF_SET 2>;
         };
     };
 
