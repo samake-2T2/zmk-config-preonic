@@ -1,0 +1,7 @@
+board:
+  name: keyboardio_preonic
+  vendor: keyboardio
+  socs:
+    - name: nrf52840
+      variants:
+        - name: zmk
