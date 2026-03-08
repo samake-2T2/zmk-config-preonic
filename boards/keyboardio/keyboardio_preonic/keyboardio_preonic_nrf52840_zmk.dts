@@ -5,6 +5,9 @@
 #include <dt-bindings/gpio/gpio.h>
 #include <dt-bindings/led/led.h>
 
+// 키 스위치 위치와 크기를 정의하기 위한 매크로
+#include <physical_layouts.dtsi>
+
 / {
 	model = "Keyboardio Preonic";
 	compatible = "keyboardio_preonic";
@@ -16,6 +19,7 @@
 		zmk,kscan = &kscan0;
 		zmk,matrix_transform = &mit_layout;
 		zmk,underglow = &led_strip;
+		zmk,physical-layout = &physical_layout0; // ZMK Studio용 물리적 레이아웃 등록
 	};
 
 	#define KRC(row, col) (((row) * 12) + (col))
@@ -32,6 +36,49 @@
 			KRC(3,0) KRC(3,1) KRC(3,2) KRC(3,3) KRC(3,4) KRC(3,5) KRC(3,6) KRC(3,7) KRC(3,8) KRC(3,9) KRC(3,10) KRC(3,11)
 			KRC(4,0) KRC(4,1) KRC(4,2) KRC(4,3) KRC(4,4)     KRC(4,5)     KRC(4,7) KRC(4,8) KRC(4,9) KRC(4,10) KRC(4,11)
 		>;
+	};
+
+	// ZMK Studio를 위한 키보드 물리적 모양 정의 (상단 3키 + 5x12 격자)
+	physical_layout0: physical_layout_0 {
+		compatible = "zmk,physical-layout";
+		display-name = "Default Layout";
+		keys  // <가로길이 세로길이 X좌표 Y좌표>
+			// 0번째 줄 (상단 추가 3키: y=0) - 오른쪽으로 치우친 배치 가정
+			= <&key_physical_attrs 100 100 900 0>
+			, <&key_physical_attrs 100 100 1000 0>
+			, <&key_physical_attrs 100 100 1100 0>
+
+			// 1번째 줄 (y=100)
+			, <&key_physical_attrs 100 100 0 100>   , <&key_physical_attrs 100 100 100 100> , <&key_physical_attrs 100 100 200 100>
+			, <&key_physical_attrs 100 100 300 100> , <&key_physical_attrs 100 100 400 100> , <&key_physical_attrs 100 100 500 100>
+			, <&key_physical_attrs 100 100 600 100> , <&key_physical_attrs 100 100 700 100> , <&key_physical_attrs 100 100 800 100>
+			, <&key_physical_attrs 100 100 900 100> , <&key_physical_attrs 100 100 1000 100>, <&key_physical_attrs 100 100 1100 100>
+
+			// 2번째 줄 (y=200)
+			, <&key_physical_attrs 100 100 0 200>   , <&key_physical_attrs 100 100 100 200> , <&key_physical_attrs 100 100 200 200>
+			, <&key_physical_attrs 100 100 300 200> , <&key_physical_attrs 100 100 400 200> , <&key_physical_attrs 100 100 500 200>
+			, <&key_physical_attrs 100 100 600 200> , <&key_physical_attrs 100 100 700 200> , <&key_physical_attrs 100 100 800 200>
+			, <&key_physical_attrs 100 100 900 200> , <&key_physical_attrs 100 100 1000 200>, <&key_physical_attrs 100 100 1100 200>
+
+			// 3번째 줄 (y=300)
+			, <&key_physical_attrs 100 100 0 300>   , <&key_physical_attrs 100 100 100 300> , <&key_physical_attrs 100 100 200 300>
+			, <&key_physical_attrs 100 100 300 300> , <&key_physical_attrs 100 100 400 300> , <&key_physical_attrs 100 100 500 300>
+			, <&key_physical_attrs 100 100 600 300> , <&key_physical_attrs 100 100 700 300> , <&key_physical_attrs 100 100 800 300>
+			, <&key_physical_attrs 100 100 900 300> , <&key_physical_attrs 100 100 1000 300>, <&key_physical_attrs 100 100 1100 300>
+
+			// 4번째 줄 (y=400)
+			, <&key_physical_attrs 100 100 0 400>   , <&key_physical_attrs 100 100 100 400> , <&key_physical_attrs 100 100 200 400>
+			, <&key_physical_attrs 100 100 300 400> , <&key_physical_attrs 100 100 400 400> , <&key_physical_attrs 100 100 500 400>
+			, <&key_physical_attrs 100 100 600 400> , <&key_physical_attrs 100 100 700 400> , <&key_physical_attrs 100 100 800 400>
+			, <&key_physical_attrs 100 100 900 400> , <&key_physical_attrs 100 100 1000 400>, <&key_physical_attrs 100 100 1100 400>
+
+			// 5번째 줄 (y=500, 중앙에 200 폭의 2U 스페이스바)
+			, <&key_physical_attrs 100 100 0 500>   , <&key_physical_attrs 100 100 100 500> , <&key_physical_attrs 100 100 200 500>
+			, <&key_physical_attrs 100 100 300 500> , <&key_physical_attrs 100 100 400 500> 
+			, <&key_physical_attrs 200 100 500 500> // 2U Spacebar
+			, <&key_physical_attrs 100 100 700 500> , <&key_physical_attrs 100 100 800 500>
+			, <&key_physical_attrs 100 100 900 500> , <&key_physical_attrs 100 100 1000 500>, <&key_physical_attrs 100 100 1100 500>
+			;
 	};
 
 	kscan0: kscan {
