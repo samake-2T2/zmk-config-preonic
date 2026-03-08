@@ -5,3 +5,7 @@ board:
     - name: nrf52840
       variants:
         - name: zmk
+  runners:
+    - nrfjprog
+    - jlink
+    - uf2
