@@ -17,7 +17,6 @@
 		zephyr,sram = &sram0;
 		zephyr,flash = &flash0;
 		zmk,kscan = &kscan0;
-		zmk,matrix_transform = &mit_layout;
 		zmk,underglow = &led_strip;
 		zmk,physical-layout = &physical_layout0; // ZMK Studio용 물리적 레이아웃 등록
 	};
@@ -43,6 +42,7 @@
 		compatible = "zmk,physical-layout";
 		display-name = "Default Layout";
 		transform = <&mit_layout>;
+		kscan = <&kscan0>;
 		keys  // <가로길이 세로길이 X좌표 Y좌표>
 			// 0번째 줄 (상단 추가 3키: y=0) - 오른쪽으로 치우친 배치 가정
 			= <&key_physical_attrs 100 100 900 0>
