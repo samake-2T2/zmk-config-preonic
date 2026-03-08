@@ -1,7 +1,39 @@
 CONFIG_BOARD_KEYBOARDIO_PREONIC=y
-CONFIG_ZMK_USB=y
-CONFIG_ZMK_BLE=y
+
+# Enable MPU (메모리 보호 및 안정성)
+CONFIG_ARM_MPU=y
+
+# enable GPIO
 CONFIG_GPIO=y
+
+# USB 장치 스택 활성화 (유선 연결 핵심)
+CONFIG_USB_DEVICE_STACK=y
+CONFIG_ZMK_USB=y
+
+# Bluetooth 활성화
+CONFIG_ZMK_BLE=y
+
+# Rotary encoder events (노브 동작 핵심)
+CONFIG_EC11=y
+CONFIG_EC11_TRIGGER_GLOBAL_THREAD=y
+
+# 추가 편의 기능 (마우스 포인터, 절전, ZMK Studio)
+CONFIG_ZMK_POINTING=y
+CONFIG_ZMK_SLEEP=y
+CONFIG_ZMK_STUDIO=y
+
+# Butterfly LEDs use ZMK's "underglow" feature
+CONFIG_ZMK_RGB_UNDERGLOW=y
+CONFIG_WS2812_STRIP=y
+
+# 메모리 파티션 및 설정 저장소 (부팅 및 페어링 유지 핵심)
+CONFIG_USE_DT_CODE_PARTITION=y
+CONFIG_MPU_ALLOW_FLASH_WRITE=y
+CONFIG_NVS=y
+CONFIG_SETTINGS_NVS=y
+CONFIG_FLASH=y
+CONFIG_FLASH_PAGE_LAYOUT=y
+CONFIG_FLASH_MAP=y
 
 # UF2 펌웨어 포맷 출력 활성화
 CONFIG_BUILD_OUTPUT_UF2=y
