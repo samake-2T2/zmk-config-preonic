@@ -24,7 +24,6 @@ CONFIG_ZMK_STUDIO=y
 
 # Butterfly LEDs use ZMK's "underglow" feature
 CONFIG_ZMK_RGB_UNDERGLOW=y
-CONFIG_WS2812_STRIP=y
 
 # 메모리 파티션 및 설정 저장소 (부팅 및 페어링 유지 핵심)
 CONFIG_USE_DT_CODE_PARTITION=y
