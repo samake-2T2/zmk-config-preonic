@@ -34,44 +34,51 @@
 
 / {
     macros {
-        // 블루투스 전환 시 깜빡임 피드백 (HSB 밝기를 0과 80으로 교차)
+        // [표준 검증] 블루투스 전환 매크로: 피드백 후 "하늘색 숨쉬기"로 자동 복귀
         bt_sel_0: bt_sel_0 {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             wait-ms = <100>;
-            bindings = <&rgb_ug RGB_ON &rgb_ug RGB_COLOR_HSB(128,100,0) &rgb_ug RGB_COLOR_HSB(128,100,80) &rgb_ug RGB_COLOR_HSB(128,100,0) &rgb_ug RGB_COLOR_HSB(128,100,80) &bt BT_SEL 0>;
+            bindings = <&rgb_ug RGB_ON &rgb_ug RGB_COLOR_HSB(128,100,0) &rgb_ug RGB_COLOR_HSB(128,100,80) &rgb_ug RGB_COLOR_HSB(128,100,0) &rgb_ug RGB_COLOR_HSB(128,100,80) &bt BT_SEL 0 &rgb_ug RGB_COLOR_HSB(200,80,40) &rgb_ug RGB_EFF_SET 2>;
         };
         bt_sel_1: bt_sel_1 {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             wait-ms = <100>;
-            bindings = <&rgb_ug RGB_ON &rgb_ug RGB_COLOR_HSB(0,100,0) &rgb_ug RGB_COLOR_HSB(0,100,80) &rgb_ug RGB_COLOR_HSB(0,100,0) &rgb_ug RGB_COLOR_HSB(0,100,80) &bt BT_SEL 1>;
+            bindings = <&rgb_ug RGB_ON &rgb_ug RGB_COLOR_HSB(0,100,0) &rgb_ug RGB_COLOR_HSB(0,100,80) &rgb_ug RGB_COLOR_HSB(0,100,0) &rgb_ug RGB_COLOR_HSB(0,100,80) &bt BT_SEL 1 &rgb_ug RGB_COLOR_HSB(200,80,40) &rgb_ug RGB_EFF_SET 2>;
         };
         bt_sel_2: bt_sel_2 {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             wait-ms = <100>;
-            bindings = <&rgb_ug RGB_ON &rgb_ug RGB_COLOR_HSB(300,100,0) &rgb_ug RGB_COLOR_HSB(300,100,80) &rgb_ug RGB_COLOR_HSB(300,100,0) &rgb_ug RGB_COLOR_HSB(300,100,80) &bt BT_SEL 2>;
+            bindings = <&rgb_ug RGB_ON &rgb_ug RGB_COLOR_HSB(300,100,0) &rgb_ug RGB_COLOR_HSB(300,100,80) &rgb_ug RGB_COLOR_HSB(300,100,0) &rgb_ug RGB_COLOR_HSB(300,100,80) &bt BT_SEL 2 &rgb_ug RGB_COLOR_HSB(200,80,40) &rgb_ug RGB_EFF_SET 2>;
         };
         bt_sel_3: bt_sel_3 {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             wait-ms = <100>;
-            bindings = <&rgb_ug RGB_ON &rgb_ug RGB_COLOR_HSB(250,100,0) &rgb_ug RGB_COLOR_HSB(250,100,80) &rgb_ug RGB_COLOR_HSB(250,100,0) &rgb_ug RGB_COLOR_HSB(250,100,80) &bt BT_SEL 3>;
+            bindings = <&rgb_ug RGB_ON &rgb_ug RGB_COLOR_HSB(250,100,0) &rgb_ug RGB_COLOR_HSB(250,100,80) &rgb_ug RGB_COLOR_HSB(250,100,0) &rgb_ug RGB_COLOR_HSB(250,100,80) &bt BT_SEL 3 &rgb_ug RGB_COLOR_HSB(200,80,40) &rgb_ug RGB_EFF_SET 2>;
         };
         bt_sel_4: bt_sel_4 {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             wait-ms = <100>;
-            bindings = <&rgb_ug RGB_ON &rgb_ug RGB_COLOR_HSB(50,100,0) &rgb_ug RGB_COLOR_HSB(50,100,80) &rgb_ug RGB_COLOR_HSB(50,100,0) &rgb_ug RGB_COLOR_HSB(50,100,80) &bt BT_SEL 4>;
+            bindings = <&rgb_ug RGB_ON &rgb_ug RGB_COLOR_HSB(50,100,0) &rgb_ug RGB_COLOR_HSB(50,100,80) &rgb_ug RGB_COLOR_HSB(50,100,0) &rgb_ug RGB_COLOR_HSB(50,100,80) &bt BT_SEL 4 &rgb_ug RGB_COLOR_HSB(200,80,40) &rgb_ug RGB_EFF_SET 2>;
         };
 
-        // 페어링 기록 삭제 시 빨간색 깜빡임 피드백 (밝기 최대)
+        // [표준 검증] 블루투스 클리어 피드백: 화이트(White)로 아주 빠르게 5번 깜빡여 확실한 구분
         bt_clr_blink: bt_clr_blink {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            wait-ms = <150>;
-            bindings = <&rgb_ug RGB_ON &rgb_ug RGB_COLOR_HSB(0,100,100) &rgb_ug RGB_COLOR_HSB(0,100,0) &rgb_ug RGB_COLOR_HSB(0,100,100) &rgb_ug RGB_COLOR_HSB(0,100,0) &rgb_ug RGB_COLOR_HSB(0,100,100) &bt BT_CLR>;
+            wait-ms = <80>;
+            bindings = <&rgb_ug RGB_ON 
+                        &rgb_ug RGB_COLOR_HSB(0,0,100) &rgb_ug RGB_COLOR_HSB(0,0,0) 
+                        &rgb_ug RGB_COLOR_HSB(0,0,100) &rgb_ug RGB_COLOR_HSB(0,0,0) 
+                        &rgb_ug RGB_COLOR_HSB(0,0,100) &rgb_ug RGB_COLOR_HSB(0,0,0) 
+                        &rgb_ug RGB_COLOR_HSB(0,0,100) &rgb_ug RGB_COLOR_HSB(0,0,0) 
+                        &rgb_ug RGB_COLOR_HSB(0,0,100) 
+                        &bt BT_CLR 
+                        &rgb_ug RGB_COLOR_HSB(200,80,40) &rgb_ug RGB_EFF_SET 2>;
         };
     };
 
