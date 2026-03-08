@@ -92,46 +92,46 @@
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
 
-        // Lower 레이어 (1)
+        // Lower 레이어 (1): F-키 및 유틸리티
         lower_layer {
             label = "Lower";
             bindings = <
                                                                                                   &trans       &trans       &trans
-&trans     &trans     &trans    &trans    &kp F1    &kp F2    &kp F3    &kp F4    &kp F5     &kp F6      &kp F7           &kp F8
-&kp F9     &kp F10    &kp F11   &trans    &kp PAGE_UP &kp HOME &kp UP_ARROW &kp END &kp INSERT &trans      &kp NUMBER_7     &kp NUMBER_8
-&kp NUMBER_9 &kp KP_NUMLOCK &kp F12 &kp CAPS &kp PAGE_DOWN &kp LEFT_ARROW &kp DOWN_ARROW &kp RIGHT_ARROW &kp DELETE &trans &kp NUMBER_4 &kp NUMBER_5
-&kp NUMBER_6 &trans   &trans    &trans    &trans    &trans    &trans    &trans    &trans     &trans      &kp NUMBER_1     &kp NUMBER_2
-&kp NUMBER_3 &trans   &trans    &trans    &trans    &trans    &trans    &trans    &kp NUMBER_0 &kp NUMBER_0 &trans
+&kp TILD   &kp F1     &kp F2    &kp F3    &kp F4    &kp F5    &kp F6    &kp F7    &kp F8     &kp F9      &kp F10          &kp DEL
+&trans     &trans     &trans    &trans    &trans    &trans    &trans    &trans    &kp INS    &kp PSCRN   &kp SLCK         &kp PAUSE_BREAK
+&trans     &trans     &trans    &trans    &trans    &trans    &trans    &trans    &trans     &trans      &kp HOME         &kp PG_UP
+&trans     &trans     &trans    &trans    &trans    &trans    &trans    &trans    &trans     &trans      &kp END          &kp PG_DN
+&trans     &trans     &trans    &trans    &trans    &trans    &trans    &trans    &trans     &trans      &trans
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
 
-        // Raise 레이어 (2)
+        // Raise 레이어 (2): 기호 및 마우스 제어
         raise_layer {
             label = "Raise";
             bindings = <
                                                                                                   &trans       &trans       &trans
-&trans     &trans     &trans    &trans    &kp F1    &kp F2    &kp F3    &kp F4    &kp F5     &kp F6      &kp F7           &kp F8
-&kp F9     &kp F10    &kp F11   &trans    &msc SCRL_UP &mkp LCLK &mmv MOVE_UP &mkp RCLK &mkp MB5 &trans    &kp MINUS        &kp EQUAL
-&kp LEFT_BRACKET &kp RIGHT_BRACKET &kp F12 &kp CAPSLOCK &msc SCRL_DOWN &mmv MOVE_LEFT &mmv MOVE_DOWN &mmv MOVE_RIGHT &mkp MB4 &trans &kp UNDERSCORE &kp PLUS
-&kp LEFT_BRACE &kp RIGHT_BRACE &trans &trans &trans &msc SCRL_LEFT &mkp MCLK &msc SCRL_RIGHT &trans &trans &trans &trans
-&kp LEFT_PARENTHESIS &kp RIGHT_PARENTHESIS &trans &trans &trans &trans &trans &trans &trans &trans &trans
+&trans     &trans     &trans    &trans    &trans    &trans    &trans    &trans    &kp MINUS  &kp EQUAL   &kp LBKT         &kp RBKT
+&trans     &trans     &msc SCRL_UP &trans &trans    &trans    &trans    &trans    &mmv MOVE_UP &trans    &trans           &trans
+&trans     &msc SCRL_LEFT &msc SCRL_DOWN &msc SCRL_RIGHT &trans &trans &mmv MOVE_LEFT &mmv MOVE_DOWN &mmv MOVE_RIGHT &trans &trans &trans
+&trans     &trans     &trans    &trans    &trans    &mkp LCLK &mkp MCLK &mkp RCLK &trans     &trans      &trans           &trans
+&trans     &trans     &trans    &trans    &trans    &trans    &trans    &trans    &trans     &trans      &trans
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
 
-        // Function 레이어 (3)
+        // Function 레이어 (3): 설정 및 하드웨어 제어
         func_layer {
             label = "Function";
             bindings = <
                                                                                                   &trans       &trans       &trans
-&trans     &trans     &trans    &out OUT_TOG &sw_bt1 &sw_bt2  &sw_bt3   &sw_bt4   &sw_bt5    &trans      &trans           &trans
-&rgb_ug RGB_TOG &rgb_ug RGB_BRD &rgb_ug RGB_BRI &trans &trans &trans &trans &trans &trans &trans &trans &rgb_ug RGB_EFF
-&rgb_ug RGB_EFR &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
+&trans     &trans     &trans    &out OUT_TOG &sw_bt1 &sw_bt2  &sw_bt3   &sw_bt4   &sw_bt5    &trans      &trans           &bt BT_CLR
+&rgb_ug RGB_TOG &rgb_ug RGB_BRD &rgb_ug RGB_BRI &rgb_ug RGB_EFF &rgb_ug RGB_EFR &trans &trans &trans &trans &trans &trans &studio_unlock
 &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
-&bootloader &trans &trans &trans &studio_unlock &trans &trans &trans &trans &trans &bt BT_CLR
+&trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
+&bootloader &trans &trans &trans &trans &trans &trans &trans &trans &trans &trans
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
