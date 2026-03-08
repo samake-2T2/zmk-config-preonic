@@ -15,7 +15,8 @@
 		zephyr,flash = &flash0;
 		zmk,kscan = &kscan0;
 		zmk,matrix_transform = &mit_layout;
-		zmk,underglow = &led_strip; // RGB 언더글로우 노드 등록
+		zmk,underglow = &led_strip;
+        // zmk,battery = &vbatt; // 배터리 측정 노드가 정의되면 여기에 연결 (현재는 보류)
 	};
 
 	#define KRC(row, col) (((row) * 12) + (col))
@@ -75,33 +76,30 @@
 		sensors = <&encoder>;
 		triggers-per-rotation = <20>;
 	};
+};
 
-    // LED 전원 제어 (P1.05)
-	ext-power {
+// C 컴파일 에러 해결: ext-power는 루트가 아닌 gpio1 노드 내부에 존재하거나, 올바른 노드 식별을 거쳐야 함
+&gpio1 {
+	status = "okay";
+	butterfly_power: ext_power_gpio {
 		compatible = "zmk,ext-power-generic";
-		label = "EXT_POWER";
+		status = "okay";
 		control-gpios = <&gpio1 5 GPIO_ACTIVE_HIGH>;
 	};
 };
 
-// RGB LED (WS2812) SPI 통신 설정 (P0.24)
 &spi3 {
 	compatible = "nordic,nrf-spim";
 	status = "okay";
-
 	pinctrl-0 = <&spi3_default>;
 	pinctrl-names = "default";
 
 	led_strip: ws2812@0 {
 		compatible = "worldsemi,ws2812-spi";
 		label = "SK6812";
-
-		/* SPI */
 		reg = <0>;
 		spi-max-frequency = <4000000>;
-
-		/* WS2812 */
-		chain-length = <9>; /* 키보드에 있는 LED 개수 (수정 가능) */
+		chain-length = <9>;
 		spi-one-frame = <0x70>;
 		spi-zero-frame = <0x40>;
 		color-mapping = <LED_COLOR_ID_GREEN
