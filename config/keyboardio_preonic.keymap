@@ -10,13 +10,27 @@
 #include <dt-bindings/zmk/outputs.h>
 #include <dt-bindings/zmk/pointing.h>
 #include <dt-bindings/zmk/rgb.h>
-
+// 레이어 인덱스 정의
 #define L_BASE  0
 #define L_LOWER 1
 #define L_RAISE 2
 #define L_FN    3
 
+// 마우스 이동 속도 및 가속도 설정 (더 빠르게 조정)
+&mmv {
+    acceleration-exponent = <1>;      // 1: 지수 가속 사용
+    time-to-max-speed-ms = <300>;    // 최대 속도까지 300ms (빠름)
+    delay-ms = <0>;                   // 대기 시간 없음
+};
+
+&msc {
+    acceleration-exponent = <1>;
+    time-to-max-speed-ms = <300>;
+    delay-ms = <0>;
+};
+
 &lt { quick_tap_ms = <200>; };
+
 
 / {
     macros {
