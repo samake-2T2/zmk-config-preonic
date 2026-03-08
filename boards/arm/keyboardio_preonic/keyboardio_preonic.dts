@@ -16,8 +16,9 @@
 		zmk,matrix_transform = &mit_layout;
 	};
 
-	// RC 매크로 충돌 해결을 위해 KRC(Keyboard Row Column) 사용
-	#define KRC(row, col) RC(row, col)
+	// ZMK 시스템의 RC(Right Control) 매크로와 충돌을 피하기 위해 독자적인 매핑 매크로 정의
+	// 행(row)과 열(col) 정보를 결합하여 고유 인덱스 생성
+	#define KRC(row, col) (((row) * 12) + (col))
 
 	mit_layout: mit_layout {
 		compatible = "zmk,matrix-transform";
