@@ -10,17 +10,18 @@
 #include <dt-bindings/zmk/outputs.h>
 #include <dt-bindings/zmk/pointing.h>
 #include <dt-bindings/zmk/rgb.h>
+
 // 레이어 인덱스 정의
 #define L_BASE  0
 #define L_LOWER 1
 #define L_RAISE 2
 #define L_FN    3
 
-// 마우스 이동 속도 및 가속도 설정 (더 빠르게 조정)
+// [표준 검증] 마우스 이동 및 가속도 설정 (Behavior Override)
 &mmv {
-    acceleration-exponent = <1>;      // 1: 지수 가속 사용
-    time-to-max-speed-ms = <300>;    // 최대 속도까지 300ms (빠름)
-    delay-ms = <0>;                   // 대기 시간 없음
+    acceleration-exponent = <2>;      // 가속 곡선을 더 가파르게 (기본 1)
+    time-to-max-speed-ms = <200>;    // 최대 속도 도달 시간 단축 (300ms -> 200ms)
+    delay-ms = <0>;
 };
 
 &msc {
@@ -31,33 +32,46 @@
 
 &lt { quick_tap_ms = <200>; };
 
-
 / {
     macros {
-        sw_bt1: sw_bt1 {
+        // [표준 검증] 블루투스 전환 시 깜빡임 피드백 (OFF -> Color -> OFF -> Color 순서)
+        bt_sel_0: bt_sel_0 {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&rgb_ug RGB_COLOR_HSB(128,100,10) &bt BT_SEL 0>;
+            wait-ms = <100>;
+            bindings = <&rgb_ug RGB_OFF &rgb_ug RGB_COLOR_HSB(128,100,10) &rgb_ug RGB_OFF &rgb_ug RGB_COLOR_HSB(128,100,10) &bt BT_SEL 0>;
         };
-        sw_bt2: sw_bt2 {
+        bt_sel_1: bt_sel_1 {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&rgb_ug RGB_COLOR_HSB(0,100,10) &bt BT_SEL 1>;
+            wait-ms = <100>;
+            bindings = <&rgb_ug RGB_OFF &rgb_ug RGB_COLOR_HSB(0,100,10) &rgb_ug RGB_OFF &rgb_ug RGB_COLOR_HSB(0,100,10) &bt BT_SEL 1>;
         };
-        sw_bt3: sw_bt3 {
+        bt_sel_2: bt_sel_2 {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&rgb_ug RGB_COLOR_HSB(300,100,10) &bt BT_SEL 2>;
+            wait-ms = <100>;
+            bindings = <&rgb_ug RGB_OFF &rgb_ug RGB_COLOR_HSB(300,100,10) &rgb_ug RGB_OFF &rgb_ug RGB_COLOR_HSB(300,100,10) &bt BT_SEL 2>;
         };
-        sw_bt4: sw_bt4 {
+        bt_sel_3: bt_sel_3 {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&rgb_ug RGB_COLOR_HSB(250,100,10) &bt BT_SEL 3>;
+            wait-ms = <100>;
+            bindings = <&rgb_ug RGB_OFF &rgb_ug RGB_COLOR_HSB(250,100,10) &rgb_ug RGB_OFF &rgb_ug RGB_COLOR_HSB(250,100,10) &bt BT_SEL 3>;
         };
-        sw_bt5: sw_bt5 {
+        bt_sel_4: bt_sel_4 {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&rgb_ug RGB_COLOR_HSB(50,100,10) &bt BT_SEL 4>;
+            wait-ms = <100>;
+            bindings = <&rgb_ug RGB_OFF &rgb_ug RGB_COLOR_HSB(50,100,10) &rgb_ug RGB_OFF &rgb_ug RGB_COLOR_HSB(50,100,10) &bt BT_SEL 4>;
+        };
+
+        // [표준 검증] 페어링 기록 삭제 시 빨간색 깜빡임 피드백 (Pairing Mode 진입 준비 알림)
+        bt_clr_blink: bt_clr_blink {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <150>;
+            bindings = <&rgb_ug RGB_COLOR_HSB(0,100,100) &rgb_ug RGB_OFF &rgb_ug RGB_COLOR_HSB(0,100,100) &rgb_ug RGB_OFF &rgb_ug RGB_COLOR_HSB(0,100,100) &bt BT_CLR>;
         };
     };
 
@@ -107,11 +121,11 @@
             label = "Function";
             bindings = <
                                                                                                   &trans       &trans       &trans
-&out OUT_TOG &sw_bt1   &sw_bt2   &sw_bt3   &sw_bt4   &sw_bt5   &trans    &trans    &trans     &rgb_ug RGB_TOG &rgb_ug RGB_BRD &rgb_ug RGB_BRI
+&out OUT_TOG &bt_sel_0 &bt_sel_1 &bt_sel_2 &bt_sel_3 &bt_sel_4 &trans    &trans    &trans     &rgb_ug RGB_TOG &rgb_ug RGB_BRD &rgb_ug RGB_BRI
 &trans     &trans     &trans    &trans    &trans    &trans    &trans    &trans    &trans     &trans      &rgb_ug RGB_EFF  &rgb_ug RGB_EFR
 &trans     &trans     &trans    &trans    &trans    &trans    &trans    &trans    &trans     &trans      &trans           &trans
 &trans     &trans     &trans    &trans    &trans    &trans    &trans    &trans    &trans     &trans      &trans           &trans
-&bootloader &trans    &trans    &trans    &trans    &trans    &trans    &trans    &trans     &trans      &bt BT_CLR
+&bootloader &trans    &trans    &trans    &trans    &trans    &trans    &trans    &trans     &trans      &bt_clr_blink
             >;
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
