@@ -10,12 +10,12 @@
 	compatible = "keyboardio_preonic";
 
 	chosen {
-		zephyr,code-partition = &slot0_partition;
+		zephyr,code-partition = &code_partition;
 		zephyr,sram = &sram0;
 		zephyr,flash = &flash0;
 		zmk,kscan = &kscan0;
-		zmk,underglow = &led_strip;
 		zmk,matrix_transform = &mit_layout;
+		zmk,underglow = &led_strip;
 	};
 
 	#define KRC(row, col) (((row) * 12) + (col))
@@ -130,11 +130,30 @@
 		compatible = "fixed-partitions";
 		#address-cells = <1>;
 		#size-cells = <1>;
-		boot_partition: partition@0 { label = "mcuboot"; reg = <0x00000000 0x0000C000>; };
-		slot0_partition: partition@c000 { label = "image-0"; reg = <0x0000C000 0x00076000>; };
-		slot1_partition: partition@82000 { label = "image-1"; reg = <0x00082000 0x00076000>; };
-		scratch_partition: partition@f8000 { label = "image-scratch"; reg = <0x000F8000 0x00006000>; };
-		storage_partition: partition@fe000 { label = "storage"; reg = <0x000FE000 0x00002000>; };
+
+		/* SoftDevice/MBR 영역 (부트로더 예약) */
+		sd_partition: partition@0 {
+			label = "softdevice";
+			reg = <0x00000000 0x00026000>;
+		};
+
+		/* 실제 펌웨어가 위치해야 할 코드 파티션 (0x26000 시작) */
+		code_partition: partition@26000 {
+			label = "code_partition";
+			reg = <0x00026000 0x000c6000>;
+		};
+
+		/* 설정 저장소 */
+		storage_partition: partition@ec000 {
+			label = "storage";
+			reg = <0x000ec000 0x00008000>;
+		};
+
+		/* 부트로더 영역 */
+		boot_partition: partition@f4000 {
+			label = "adafruit_boot";
+			reg = <0x000f4000 0x0000c000>;
+		};
 	};
 };
 
