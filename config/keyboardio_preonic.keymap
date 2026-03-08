@@ -34,14 +34,6 @@
 
 / {
     macros {
-        // [표준 검증] 부팅 후 "하늘색 숨쉬기"로 즉시 전환하는 매크로
-        cyan_breathe: cyan_breathe {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            wait-ms = <10>;
-            bindings = <&rgb_ug RGB_ON &rgb_ug RGB_COLOR_HSB(200,80,40) &rgb_ug RGB_EFF_SET 2>;
-        };
-
         // 블루투스 전환 시 깜빡임 피드백 (HSB 밝기를 0과 80으로 교차)
         bt_sel_0: bt_sel_0 {
             compatible = "zmk,behavior-macro";
@@ -129,7 +121,7 @@
             label = "Function";
             bindings = <
                                                                                                   &trans       &trans       &trans
-&out OUT_TOG &bt_sel_0 &bt_sel_1 &bt_sel_2 &bt_sel_3 &bt_sel_4 &trans    &trans    &trans     &cyan_breathe   &rgb_ug RGB_BRD &rgb_ug RGB_BRI
+&out OUT_TOG &bt_sel_0 &bt_sel_1 &bt_sel_2 &bt_sel_3 &bt_sel_4 &trans    &trans    &trans     &rgb_ug RGB_TOG &rgb_ug RGB_BRD &rgb_ug RGB_BRI
 &trans     &trans     &trans    &trans    &trans    &trans    &trans    &trans    &trans     &trans      &rgb_ug RGB_EFF  &rgb_ug RGB_EFR
 &trans     &trans     &trans    &trans    &trans    &trans    &trans    &trans    &trans     &trans      &trans           &trans
 &trans     &trans     &trans    &trans    &trans    &trans    &trans    &trans    &trans     &trans      &trans           &trans
