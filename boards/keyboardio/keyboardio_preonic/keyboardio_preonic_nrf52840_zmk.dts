@@ -77,7 +77,6 @@
 	};
 };
 
-// 필수: gpio0과 gpio1 포트를 모두 활성화해야 합니다.
 &gpio0 {
 	status = "okay";
 };
@@ -132,7 +131,15 @@
 	};
 };
 
-// Nordic nRF52 시리즈의 버튼/인코더 인터럽트 감지를 위한 필수 장치 활성화
 &gpiote {
 	status = "okay";
+};
+
+// USB 디바이스 컨트롤러 활성화 (링킹 에러 해결)
+&usbd {
+	status = "okay";
+	cdc_acm_uart: cdc_acm_uart {
+		compatible = "zephyr,cdc-acm-uart";
+		label = "CDC_ACM_0";
+	};
 };
