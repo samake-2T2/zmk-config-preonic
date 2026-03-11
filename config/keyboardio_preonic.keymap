@@ -46,7 +46,7 @@
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             wait-ms = <1000>;
-            bindings = <&rgb_ug RGB_ON>, <&rgb_ug RGB_COLOR_HSB(0,100,100)>, <&bt BT_SEL 1>, <&rgb_ug RGB_COLOR_HSB(200,100,100)>;
+            bindings = <&rgb_ug RGB_ON>, <&rgb_ug RGB_COLOR_HSB(30,100,100)>, <&bt BT_SEL 1>, <&rgb_ug RGB_COLOR_HSB(200,100,100)>;
         };
         bt_sel_2: bt_sel_2 {
             compatible = "zmk,behavior-macro";
@@ -128,7 +128,7 @@
 &trans     &kp PAGE_UP &kp HOME &kp UP    &kp END   &kp INSERT &trans   &kp N7    &kp N8     &kp N9      &kp KP_NUM       &kp F12
 &kp CAPS   &kp PAGE_DOWN &kp LEFT &kp DOWN &kp RIGHT &kp DEL   &trans   &kp N4    &kp N5     &kp N6      &trans           &trans
 &trans     &trans     &trans    &trans    &trans    &trans    &trans   &kp N1    &kp N2     &kp N3      &trans           &trans
-&trans     &trans     &trans    &trans    &trans    &trans    &trans   &trans    &kp N0     &kp N0      &trans
+&trans     &trans     &trans    &kp RCTRL &trans    &trans    &trans   &kp N0    &kp N0     &trans      &trans
             >;
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
