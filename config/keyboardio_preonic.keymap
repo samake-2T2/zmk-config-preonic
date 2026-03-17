@@ -140,7 +140,7 @@
 &trans     &kp F1     &kp F2    &kp F3    &kp F4    &kp F5    &kp F6    &kp F7    &kp F8     &kp F9      &kp F10          &kp F11
 &trans     &msc SCRL_UP &mkp LCLK &mmv MOVE_UP &mkp RCLK &mkp MB5 &trans &kp MINUS &kp EQUAL  &kp LBKT    &kp RBKT         &kp F12
 &kp CAPSLOCK &msc SCRL_DOWN &mmv MOVE_LEFT &mmv MOVE_DOWN &mmv MOVE_RIGHT &mkp MB4 &trans &kp UNDER &kp PLUS &kp LBRC &kp RBRC &trans
-&trans     &msc SCRL_LEFT &mkp MCLK &msc SCRL_RIGHT &trans &trans &trans &trans &kp LPAR &kp RPAR &trans &trans
+&trans     &msc SCRL_LEFT &mkp MCLK &msc SCRL_RIGHT &trans &trans &trans &trans &trans &kp LPAR &kp RPAR &trans
 &trans     &trans     &trans    &trans    &trans    &trans    &trans   &trans    &trans     &trans      &trans
             >;
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
