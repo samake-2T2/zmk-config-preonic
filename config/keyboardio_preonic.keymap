@@ -32,78 +32,6 @@
 
 &lt { quick_tap_ms = <200>; };
 
-/ {
-    macros {
-        // [표준 검증 완료] 매크로 파싱 오류를 방지하기 위해 HSB 매크로를 직접 수치로 풀어서 작성
-        // 형식: &rgb_ug RGB_COLOR_HSB_CMD h s b
-        bt_sel_0: bt_sel_0 {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            wait-ms = <1000>;
-            bindings = <&rgb_ug RGB_ON>, <&rgb_ug RGB_COLOR_HSB(128,100,100)>, <&bt BT_SEL 0>, <&rgb_ug RGB_COLOR_HSB(200,100,100)>;
-        };
-        bt_sel_1: bt_sel_1 {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            wait-ms = <1000>;
-            bindings = <&rgb_ug RGB_ON>, <&rgb_ug RGB_COLOR_HSB(30,100,100)>, <&bt BT_SEL 1>, <&rgb_ug RGB_COLOR_HSB(200,100,100)>;
-        };
-        bt_sel_2: bt_sel_2 {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            wait-ms = <1000>;
-            bindings = <&rgb_ug RGB_ON>, <&rgb_ug RGB_COLOR_HSB(240,100,100)>, <&bt BT_SEL 2>, <&rgb_ug RGB_COLOR_HSB(200,100,100)>;
-        };
-        bt_sel_3: bt_sel_3 {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            wait-ms = <1000>;
-            bindings = <&rgb_ug RGB_ON>, <&rgb_ug RGB_COLOR_HSB(250,100,100)>, <&bt BT_SEL 3>, <&rgb_ug RGB_COLOR_HSB(200,100,100)>;
-        };
-        bt_sel_4: bt_sel_4 {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            wait-ms = <1000>;
-            bindings = <&rgb_ug RGB_ON>, <&rgb_ug RGB_COLOR_HSB(50,100,100)>, <&bt BT_SEL 4>, <&rgb_ug RGB_COLOR_HSB(200,100,100)>;
-        };
-        rgb_reset: rgb_reset {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            wait-ms = <1000>;
-            bindings = <&rgb_ug RGB_ON>, <&rgb_ug RGB_COLOR_HSB(0,0,100)>, <&rgb_ug RGB_COLOR_HSB(200,100,100)>;
-        };
-        mo_c1: mo_c1 {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            wait-ms = <1000>;
-            bindings = <&rgb_ug RGB_COLOR_HSB(120,100,100)>, <&rgb_ug RGB_COLOR_HSB(200,100,100)>;
-        };
-        mo_c2: mo_c2 {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            wait-ms = <1000>;
-            bindings = <&rgb_ug RGB_COLOR_HSB(60,100,100)>, <&rgb_ug RGB_COLOR_HSB(200,100,100)>;
-        };
-        mo_c3: mo_c3 {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            wait-ms = <1000>;
-            bindings = <&rgb_ug RGB_COLOR_HSB(300,100,100)>, <&rgb_ug RGB_COLOR_HSB(200,100,100)>;
-        };
-        bt_clr_fb: bt_clr_fb {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            wait-ms = <1000>;
-            bindings = <&rgb_ug RGB_COLOR_HSB(0,100,100)>, <&bt BT_CLR>, <&rgb_ug RGB_COLOR_HSB(200,100,100)>;
-        };
-        bt_all_fb: bt_all_fb {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            wait-ms = <1000>;
-            bindings = <&rgb_ug RGB_COLOR_HSB(0,100,100)>, <&bt BT_CLR_ALL>, <&rgb_ug RGB_COLOR_HSB(200,100,100)>;
-        };
-    };
-
     keymap {
         compatible = "zmk,keymap";
 
@@ -150,11 +78,11 @@
             label = "Function";
             bindings = <
                                                                                                   &trans       &trans       &trans
-&out OUT_TOG &bt_sel_0 &bt_sel_1 &bt_sel_2 &bt_sel_3 &bt_sel_4 &trans &trans    &trans     &rgb_ug RGB_TOG &rgb_ug RGB_BRD &rgb_ug RGB_BRI
+&out OUT_TOG &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4 &trans &trans &trans &rgb_ug RGB_TOG &rgb_ug RGB_BRD &rgb_ug RGB_BRI
 &trans     &trans     &trans    &trans    &trans    &trans    &trans    &trans    &trans     &trans      &rgb_ug RGB_EFF  &rgb_ug RGB_EFR
 &trans     &trans     &trans    &trans    &trans    &trans    &trans    &trans    &trans     &trans      &trans           &trans
 &trans     &trans     &trans    &trans    &trans    &trans    &trans    &trans    &trans     &trans      &trans           &trans
-&bootloader &trans    &trans    &trans    &trans    &trans    &trans    &trans    &rgb_reset &bt_all_fb &bt_clr_fb
+&bootloader &trans    &trans    &trans    &trans    &trans    &trans    &trans    &rgb_ug RGB_COLOR_HSB(195,100,100) &bt BT_CLR_ALL &bt BT_CLR
             >;
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
