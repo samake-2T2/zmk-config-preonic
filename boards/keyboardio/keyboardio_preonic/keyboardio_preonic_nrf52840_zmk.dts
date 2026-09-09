@@ -20,6 +20,9 @@
 		zmk,underglow = &led_strip;
 	};
 
+	#undef RC
+	#define RC(row, col) (((row) << 8) + (col))
+
 	mit_transform: mit_transform {
 		compatible = "zmk,matrix-transform";
 		columns = <12>;
