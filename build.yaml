@@ -1,2 +1,3 @@
 include:
   - board: keyboardio_preonic//zmk
+    snippet: studio-rpc-usb-uart

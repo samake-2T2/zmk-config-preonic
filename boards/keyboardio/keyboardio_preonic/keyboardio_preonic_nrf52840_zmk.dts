@@ -4,6 +4,7 @@
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/gpio/gpio.h>
 #include <dt-bindings/led/led.h>
+#include "keyboardio_preonic-layouts.dtsi"
 
 / {
 	model = "Keyboardio Preonic";
@@ -15,13 +16,14 @@
 		zephyr,flash = &flash0;
 		zmk,battery = &fuelgauge;
 		zmk,kscan = &kscan0;
-		zmk,matrix_transform = &mit_layout;
+		zmk,matrix_transform = &mit_transform;
+		zmk,physical-layout = &mit_layout;
 		zmk,underglow = &led_strip;
 	};
 
 	#define KRC(row, col) (((row) * 12) + (col))
 
-	mit_layout: mit_layout {
+	mit_transform: mit_transform {
 		compatible = "zmk,matrix-transform";
 		columns = <12>;
 		rows = <6>;
@@ -90,6 +92,7 @@
 		compatible = "zmk,ext-power-generic";
 		status = "okay";
 		control-gpios = <&gpio1 5 GPIO_ACTIVE_HIGH>;
+		init-delay-ms = <50>;
 	};
 };
 

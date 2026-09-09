@@ -10,6 +10,7 @@
 #include <dt-bindings/zmk/outputs.h>
 #include <dt-bindings/zmk/pointing.h>
 #include <dt-bindings/zmk/rgb.h>
+#include <dt-bindings/zmk/ext_power.h>
 
 // 레이어 인덱스 정의
 #define L_BASE  0
@@ -36,9 +37,9 @@
         rgb_cyan_breathe: rgb_cyan_breathe {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            wait-ms = <0>;
-            tap-ms = <0>;
-            bindings = <&rgb_ug RGB_ON>, <&rgb_ug RGB_COLOR_HSB(195,100,100)>, <&rgb_ug RGB_EFS_CMD 1>;
+            wait-ms = <10>;
+            tap-ms = <10>;
+            bindings = <&ext_power EP_ON>, <&rgb_ug RGB_ON>, <&rgb_ug RGB_COLOR_HSB(195,100,100)>, <&rgb_ug RGB_EFS_CMD 1>;
         };
     };
 
@@ -88,11 +89,11 @@
             label = "Function";
             bindings = <
                                                                                                   &trans       &trans       &trans
-&out OUT_TOG &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4 &trans &trans &trans &rgb_ug RGB_TOG &rgb_ug RGB_BRD &rgb_ug RGB_BRI
+&out OUT_TOG &bt BT_SEL 0 &bt BT_SEL 1 &bt BT_SEL 2 &bt BT_SEL 3 &bt BT_SEL 4 &trans &trans &ext_power EP_ON &rgb_ug RGB_TOG &rgb_ug RGB_BRD &rgb_ug RGB_BRI
 &trans     &trans     &trans    &trans    &trans    &trans    &trans    &trans    &trans     &trans      &rgb_ug RGB_EFF  &rgb_ug RGB_EFR
 &trans     &trans     &trans    &trans    &trans    &trans    &trans    &trans    &trans     &trans      &trans           &trans
 &trans     &trans     &trans    &trans    &trans    &trans    &trans    &trans    &trans     &trans      &trans           &trans
-&bootloader &trans    &trans    &trans    &trans    &trans    &trans    &trans    &rgb_cyan_breathe &bt BT_CLR_ALL &bt BT_CLR
+&bootloader &trans    &trans    &trans    &studio_unlock &trans &trans  &trans    &rgb_cyan_breathe &bt BT_CLR_ALL &bt BT_CLR
             >;
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
