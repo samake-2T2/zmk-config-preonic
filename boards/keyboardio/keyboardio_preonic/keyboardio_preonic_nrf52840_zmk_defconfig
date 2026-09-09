@@ -30,8 +30,12 @@ CONFIG_ZMK_BLE=y
 CONFIG_EC11=y
 CONFIG_EC11_TRIGGER_GLOBAL_THREAD=y
 
-# 안정성을 위해 임시로 절전 기능 비활성화
-CONFIG_ZMK_SLEEP=n
+# 절전 (Deep Sleep) 지원
+CONFIG_ZMK_SLEEP=y
+
+# I2C 및 MAX17048 정밀 배터리 연료 게이지 드라이버
+CONFIG_I2C=y
+CONFIG_ZMK_MAX17048=y
 
 # Butterfly LEDs use ZMK's "underglow" feature
 CONFIG_ZMK_RGB_UNDERGLOW=y
