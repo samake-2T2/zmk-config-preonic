@@ -166,10 +166,10 @@
 			reg = <0x00026000 0x000c6000>;
 		};
 
-		/* NVS 설정/페어링 저장소 (24KB: 0x000ee000 ~ 0x000f4000) - 깨끗한 초기 상태 보장 */
-		storage_partition: partition@ee000 {
+		/* NVS 설정/페어링 저장소 (32KB: 0x000ec000 ~ 0x000f4000) - 8섹터 규격 완벽 일치 */
+		storage_partition: partition@ec000 {
 			label = "storage";
-			reg = <0x000ee000 0x00006000>;
+			reg = <0x000ec000 0x00008000>;
 		};
 
 		/* Adafruit nRF52 공장 부트로더 (48KB: 0x000f4000 ~ 0x00100000) */
