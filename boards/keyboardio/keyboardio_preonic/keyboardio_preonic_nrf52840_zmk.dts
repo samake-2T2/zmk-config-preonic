@@ -126,26 +126,36 @@
 };
 
 &flash0 {
+	/*
+	 * Keyboardio Preonic 공식 플래시 파티션 레이아웃 (1MB nRF52840)
+	 */
 	partitions {
 		compatible = "fixed-partitions";
 		#address-cells = <1>;
 		#size-cells = <1>;
 
-		boot_partition: partition@0 {
-			label = "mcuboot";
-			reg = <0x00000000 0x00001000>;
+		/* Nordic SoftDevice S140 / MBR (152KB: 0x00000000 ~ 0x00026000) */
+		sd_partition: partition@0 {
+			label = "softdevice";
+			reg = <0x00000000 0x00026000>;
 		};
-		code_partition: partition@1000 {
+
+		/* ZMK 펌웨어 코드 영역 (792KB: 0x00026000 ~ 0x000ec000) */
+		code_partition: partition@26000 {
 			label = "code_partition";
-			reg = <0x00001000 0x000ec000>;
+			reg = <0x00026000 0x000c6000>;
 		};
-		storage_partition: partition@ed000 {
+
+		/* NVS 설정/페어링 저장소 (32KB: 0x000ec000 ~ 0x000f4000) - 부트로더 보호 */
+		storage_partition: partition@ec000 {
 			label = "storage";
-			reg = <0x000ed000 0x00008000>;
+			reg = <0x000ec000 0x00008000>;
 		};
-		bootloader_partition: partition@f5000 {
+
+		/* Adafruit nRF52 공장 부트로더 (48KB: 0x000f4000 ~ 0x00100000) */
+		boot_partition: partition@f4000 {
 			label = "adafruit_boot";
-			reg = <0x000f5000 0x0000b000>;
+			reg = <0x000f4000 0x0000c000>;
 		};
 	};
 };
