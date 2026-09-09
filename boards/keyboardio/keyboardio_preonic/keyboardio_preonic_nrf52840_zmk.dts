@@ -87,7 +87,7 @@
 
 &gpio1 {
 	status = "okay";
-	butterfly_power: ext_power_gpio {
+	butterfly_power: butterfly_pwr {
 		compatible = "zmk,ext-power-generic";
 		status = "okay";
 		control-gpios = <&gpio1 5 GPIO_ACTIVE_HIGH>;
@@ -166,10 +166,10 @@
 			reg = <0x00026000 0x000c6000>;
 		};
 
-		/* NVS 설정/페어링 저장소 (32KB: 0x000ec000 ~ 0x000f4000) - 부트로더 보호 */
-		storage_partition: partition@ec000 {
+		/* NVS 설정/페어링 저장소 (24KB: 0x000ee000 ~ 0x000f4000) - 깨끗한 초기 상태 보장 */
+		storage_partition: partition@ee000 {
 			label = "storage";
-			reg = <0x000ec000 0x00008000>;
+			reg = <0x000ee000 0x00006000>;
 		};
 
 		/* Adafruit nRF52 공장 부트로더 (48KB: 0x000f4000 ~ 0x00100000) */

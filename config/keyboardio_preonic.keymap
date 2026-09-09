@@ -67,7 +67,7 @@
 &trans     &kp PAGE_UP &kp HOME &kp UP    &kp END   &kp INSERT &trans   &kp N7    &kp N8     &kp N9      &kp KP_NUM       &kp F12
 &kp CAPS   &kp PAGE_DOWN &kp LEFT &kp DOWN &kp RIGHT &kp DEL   &trans   &kp N4    &kp N5     &kp N6      &trans           &trans
 &trans     &trans     &trans    &trans    &trans    &trans    &trans   &kp N1    &kp N2     &kp N3      &trans           &trans
-&trans     &trans     &trans    &kp RCTRL &trans    &trans    &trans   &kp N0    &kp N0     &trans      &trans
+&trans     &trans     &trans    &kp RCTRL &trans    &trans    &trans   &kp N0    &kp N0     &rgb_cyan_breathe &rgb_ug RGB_TOG
             >;
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
@@ -80,7 +80,7 @@
 &trans     &msc SCRL_UP &mkp LCLK &mmv MOVE_UP &mkp RCLK &mkp MB5 &trans &kp MINUS &kp EQUAL  &kp LBKT    &kp RBKT         &kp F12
 &kp CAPSLOCK &msc SCRL_DOWN &mmv MOVE_LEFT &mmv MOVE_DOWN &mmv MOVE_RIGHT &mkp MB4 &trans &kp UNDER &kp PLUS &kp LBRC &kp RBRC &trans
 &trans     &msc SCRL_LEFT &mkp MCLK &msc SCRL_RIGHT &trans &trans &trans &trans &trans &kp LPAR &kp RPAR &trans
-&trans     &trans     &trans    &trans    &trans    &trans    &trans   &trans    &trans     &trans      &trans
+&trans     &trans     &trans    &trans    &trans    &trans    &trans   &trans    &trans     &rgb_cyan_breathe &rgb_ug RGB_TOG
             >;
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
         };
@@ -96,6 +96,14 @@
 &bootloader &trans    &trans    &trans    &studio_unlock &trans &trans  &trans    &rgb_cyan_breathe &bt BT_CLR_ALL &bt BT_CLR
             >;
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
+        };
+    };
+
+    conditional_layers {
+        compatible = "zmk,conditional-layers";
+        tri_layer {
+            if-layers = <L_LOWER L_RAISE>;
+            then-layer = <L_FN>;
         };
     };
 };
