@@ -5,8 +5,6 @@ menuconfig KEYBOARDIO_BUTTERFLY_STATUS
 	default y
 	depends on ZMK_BLE
 	select LED_STRIP
-	select WS2812_STRIP
-	select SPI
 	help
 	  Enables dedicated Bluetooth profile and connection status indication
 	  on the 4 butterfly wing RGB LEDs (SK6812/WS2812).
