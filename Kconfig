@@ -37,4 +37,11 @@ config BUTTERFLY_TIMEOUT_MS
 	help
 	  Duration before the connected wing dims to save battery.
 
+config BUTTERFLY_BOOT_ANIM_MS
+	int "Boot breathing animation duration (milliseconds, 0 to disable)"
+	default 1600
+	range 0 10000
+	help
+	  Duration of the warm amber breathing animation on the 4 butterfly LEDs upon boot.
+
 endif # KEYBOARDIO_BUTTERFLY_STATUS

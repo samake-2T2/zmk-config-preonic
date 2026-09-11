@@ -36,10 +36,18 @@ LOG_MODULE_DECLARE(zmk, CONFIG_ZMK_LOG_LEVEL);
 
 #define BUTTERFLY_NUM_LEDS DT_PROP(BUTTERFLY_NODE, chain_length)
 
+#ifndef CONFIG_BUTTERFLY_BOOT_ANIM_MS
+#define CONFIG_BUTTERFLY_BOOT_ANIM_MS 1600
+#endif
+
+#define BOOT_ANIM_FRAME_MS 20
+
 static const struct device *const strip_dev = DEVICE_DT_GET(BUTTERFLY_NODE);
 
 static struct k_work_delayable butterfly_work;
 static int64_t state_change_time = 0;
+static int64_t boot_start_time = 0;
+static bool boot_anim_done = false;
 static bool blink_state = false;
 static enum zmk_activity_state current_activity = ZMK_ACTIVITY_ACTIVE;
 
@@ -64,9 +72,43 @@ static void set_all_off(void) {
 
 static void butterfly_work_handler(struct k_work *work) {
     if (current_activity == ZMK_ACTIVITY_SLEEP) {
+        boot_anim_done = true;
         set_all_off();
         return;
     }
+
+#if CONFIG_BUTTERFLY_BOOT_ANIM_MS > 0
+    if (!boot_anim_done) {
+        int64_t elapsed = k_uptime_get() - boot_start_time;
+        if (elapsed < CONFIG_BUTTERFLY_BOOT_ANIM_MS) {
+            int64_t x = (elapsed * 1000) / CONFIG_BUTTERFLY_BOOT_ANIM_MS;
+            if (x < 0) {
+                x = 0;
+            } else if (x > 1000) {
+                x = 1000;
+            }
+            uint32_t bell = (uint32_t)((4 * x * (1000 - x)) / 1000);
+            uint32_t eased = (bell * bell) / 1000;
+            uint8_t peak = (uint8_t)CONFIG_BUTTERFLY_BRIGHTNESS;
+            uint8_t brt = (uint8_t)(((uint32_t)peak * eased) / 1000);
+            uint8_t r = brt;
+            uint8_t g = (uint8_t)(((uint16_t)brt * 35 + 50) / 100);
+            uint8_t b = 0;
+
+            struct led_rgb pixels[BUTTERFLY_NUM_LEDS];
+            for (size_t i = 0; i < BUTTERFLY_NUM_LEDS; i++) {
+                pixels[i] = make_rgb(r, g, b);
+            }
+            update_leds(pixels);
+
+            k_work_reschedule(&butterfly_work, K_MSEC(BOOT_ANIM_FRAME_MS));
+            return;
+        }
+
+        boot_anim_done = true;
+        state_change_time = k_uptime_get();
+    }
+#endif
 
     struct led_rgb pixels[BUTTERFLY_NUM_LEDS];
     for (size_t i = 0; i < BUTTERFLY_NUM_LEDS; i++) {
@@ -171,6 +213,7 @@ static int butterfly_event_listener(const zmk_event_t *eh) {
         if (!pos_ev->state) {
             return 0;
         }
+        boot_anim_done = true;
     }
 
     butterfly_status_refresh();
@@ -192,6 +235,12 @@ ZMK_SUBSCRIPTION(butterfly_status, zmk_activity_state_changed);
 
 static int butterfly_init(void) {
     k_work_init_delayable(&butterfly_work, butterfly_work_handler);
+#if CONFIG_BUTTERFLY_BOOT_ANIM_MS > 0
+    boot_anim_done = false;
+    boot_start_time = k_uptime_get();
+#else
+    boot_anim_done = true;
+#endif
     butterfly_status_refresh();
     return 0;
 }
