@@ -20,12 +20,12 @@ Custom ZMK firmware configuration specifically developed for the **Keyboardio Pr
 
 * **5×12 Ortholinear (MIT Layout)**: 62 keys total (including 2 top buttons, 1 rotary encoder push switch, and a centered 2U spacebar).
 * **Rotary Encoder (EC11)**: Smooth volume control (`Volume Up / Down`) with click-to-mute (`C_MUTE`).
-* **Enhanced Wireless Connection**: Bluetooth Low Energy (BLE) with 5 profile slots and **+8 dBm** transmit power for maximum stability.
+* **Enhanced Wireless Connection**: Bluetooth Low Energy (BLE) with 4 profile slots and **+8 dBm** transmit power for maximum stability.
 * **Low-Latency Debouncing**: Optimized debouncing (1 ms press / 5 ms release) for rapid response and debounce error prevention.
 * **Full NKRO**: N-Key Rollover enabled for simultaneous keypress accuracy.
 * **RGB Underglow**: Keyboardio butterfly logo illuminated on startup with signature cyan breathing effect (`HSV: 195, 100, 100`).
 * **Mouse Emulation (ZMK Pointing)**: Integrated mouse cursor movement, clicking, and scrolling on the Raise layer.
-* **Tri-Layer Support**: Simultaneously holding `Lower` and `Raise` automatically activates the `Function` layer.
+* **Decoupled Tri-Layer & Dedicated Fn**: Enter the Function layer either via the dedicated top-middle `Fn` key (`&mo L_FN`) or by holding `Lower` and `Raise` simultaneously without conflict.
 * **GUI Configurator Compatibility**:
   * **Keymap Editor**: Pre-configured layout metadata (`config/keyboardio_preonic.json` & `config/info.json`) with `row` and `col` properties for clean devicetree formatting.
   * **ZMK Studio**: Real-time keymap and layer adjustments over USB via ZMK Studio.
@@ -106,12 +106,12 @@ The Keyboardio Preonic features a distinctive butterfly logo illuminated by 4 ad
 
 * **5×12 직교 배열 (MIT Layout)**: 중앙 2U 스페이스바, 상단 2개 보조 키 및 로터리 인코더 푸시 스위치 포함 총 62개 키 지원.
 * **로터리 인코더 (EC11)**: 부드러운 볼륨 조절(`Volume Up / Down`) 및 클릭 시 음소거(`C_MUTE`) 동작.
-* **안정적인 무선 연결**: 블루투스 저전력(BLE) 5개 프로필 슬롯 및 **+8 dBm 최대 송신 출력** 설정으로 연결 끊김 최소화.
+* **안정적인 무선 연결**: 블루투스 저전력(BLE) 4개 프로필 슬롯 및 **+8 dBm 최대 송신 출력** 설정으로 연결 끊김 최소화.
 * **초저지연 디바운스**: 1ms 누름 / 5ms 릴리즈 설정으로 키 입력 반응성 극대화 및 채터링 방지.
 * **NKRO 완벽 지원**: 무한 동시 입력(N-Key Rollover) 지원.
 * **Keyboardio 나비 로고 RGB 언더글로우**: 부팅 시 시그니처 스카이블루 숨쉬기(Cyan Breathing, `HSV: 195, 100, 100`) 효과 자동 점등.
 * **마우스 에뮬레이션 (ZMK Pointing)**: Raise 레이어에서 마우스 커서 이동, 클릭, 휠 스크롤 지원.
-* **트라이 레이어(Tri-Layer)**: `Lower` 키와 `Raise` 키를 동시에 누르면 자동으로 `Function` 레이어로 전환.
+* **트라이 레이어 및 독립 Fn 동시 지원 (디커플링)**: 상단 중앙 독립 `Fn` 키(`&mo L_FN`) 진입과 `Lower` + `Raise` 동시 입력을 통한 트라이 레이어 진입을 충돌 없이 완벽히 지원.
 * **웹 GUI 도구 완벽 호환**:
   * **Keymap Editor**: 전용 레이아웃 메타데이터(`row`, `col` 포함)를 완비하여 소스코드 가독성 경고 해결 및 깔끔한 코드 정렬 지원.
   * **ZMK Studio**: 펌웨어 재빌드 없이 실시간으로 키 매핑을 수정할 수 있는 ZMK Studio 지원.
@@ -156,6 +156,7 @@ Keyboardio Preonic 상단 중앙의 나비 로고에는 4개의 어드레서블 
 | **날개 3번 (Wing 3)** | 3번 슬롯 (`BT_SEL 3`) | 하늘색/청록색 깜빡임 (400ms 주기) | 사파이어 블루 점등 (5초 후 은은한 밝기로 전환) |
 
 * **USB 유선 모드**: 4개 날개 전체가 에메랄드 그린(Green)으로 점등.
+* **사용자 선택 우선순위**: USB 유선 케이블이 연결되어 있어도 블루투스 슬롯을 선택하면 날개 LED가 해당 블루투스 상태를 즉시 표시합니다.
 * **스마트 배터리 절전**: 연결 완료 5초 후 저전력 은은한 밝기로 자동 감광되며, 키보드가 딥슬립(Deep Sleep)에 진입하면 모든 LED가 완전히 꺼져 배터리 소모를 0으로 유지합니다.
 
 ---
@@ -164,7 +165,7 @@ Keyboardio Preonic 상단 중앙의 나비 로고에는 4개의 어드레서블 
 
 1. **자동 빌드**: `master` 브랜치에 코드를 푸시하면 GitHub Actions 파이프라인이 자동으로 펌웨어를 빌드하여 릴리스/아티팩트로 생성합니다.
 2. **부트로더 진입 방법**:
-   * **키 조합**: `Fn` 키를 누른 상태에서 하단 가장 왼쪽 키(`LCTRL` 자리)를 입력합니다.
+   * **키 조합**: `Fn` 키(또는 Lower + Raise)를 누른 상태에서 하단 가장 왼쪽 키(`LCTRL` 자리)를 입력합니다.
    * **물리 버튼**: 키보드 기판의 리셋 버튼을 빠르게 2회 클릭합니다.
 3. **설치**: PC에 `PREONIC`이라는 이름의 외장 드라이브가 인식되면, 다운로드한 `keyboardio_preonic__zmk.uf2` 파일을 드래그 앤 드롭(또는 복사)합니다. 복사가 완료되면 자동으로 키보드가 재부팅되며 새 펌웨어가 적용됩니다.
 
@@ -187,7 +188,7 @@ Keyboardio Preonic 상단 중앙의 나비 로고에는 4개의 어드레서블 
 ├── src/                          # 나비 상태 표시기 C 소스 (butterfly_status.c)
 ├── boards/keyboardio/            # Keyboardio Preonic 보드 및 DTS 정의
 ├── config/
-│   ├── keyboardio_preonic.keymap # 4단계 레이어 키 매핑 정의
+│   ├── keyboardio_preonic.keymap # 5단계 레이어 키 매핑 정의 (Base, Lower, Raise, Function, Tri)
 │   ├── keyboardio_preonic.conf   # 블루투스, 나비 인디케이터, NKRO 설정
 │   ├── keyboardio_preonic.json   # Keymap Editor용 레이아웃 메타데이터
 │   ├── info.json                 # GUI 도구 호환용 표준 메타데이터
