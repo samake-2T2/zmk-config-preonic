@@ -52,7 +52,7 @@ Custom ZMK firmware configuration specifically developed for the **Keyboardio Pr
 #### 4. Function Layer (Official Keyboardio Preonic Layout)
 * **Number Row**:
   * `Grave` position: `&out OUT_TOG` (Toggle between USB and BLE output)
-  * `1` ~ `5`: `&bt BT_SEL 0` ~ `&bt BT_SEL 4` (Select Bluetooth profiles 1 to 5)
+  * `1` ~ `4`: `&bt BT_SEL 0` ~ `&bt BT_SEL 3` (Select Bluetooth profiles 0 to 3, max 4 devices)
 * **Bottom Row**:
   * `LCTRL` position: `&bootloader` (Enter DFU bootloader mode)
   * `Lower` position: `&studio_unlock` (Unlock ZMK Studio)
@@ -124,7 +124,7 @@ Custom ZMK firmware configuration specifically developed for the **Keyboardio Pr
 #### 4. 펑션 레이어 (Function Layer - 공식 순정 키맵 규격)
 * **숫자 행**:
   * `Grave` 자리: **`&out OUT_TOG`** (USB 유선 / 블루투스 무선 출력 모드 전환)
-  * `1 ~ 5` 자리: **`&bt BT_SEL 0 ~ 4`** (블루투스 기기 슬롯 1번 ~ 5번 선택)
+  * `1 ~ 4` 자리: **`&bt BT_SEL 0 ~ 3`** (블루투스 기기 프로필 0번 ~ 3번, 총 4대 선택)
 * **하단 행**:
   * `LCTRL` 자리: **`&bootloader`** (USB 외장 드라이브 부트로더 모드 진입)
   * `Lower` 자리: **`&studio_unlock`** (ZMK Studio 잠금 해제)
