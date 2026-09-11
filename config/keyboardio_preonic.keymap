@@ -35,18 +35,41 @@
 &lt { quick_tap_ms = <200>; };
 
 / {
+    macros {
+        bt_sel_0: bt_sel_0 {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&out OUT_BLE>, <&bt BT_SEL 0>;
+        };
+        bt_sel_1: bt_sel_1 {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&out OUT_BLE>, <&bt BT_SEL 1>;
+        };
+        bt_sel_2: bt_sel_2 {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&out OUT_BLE>, <&bt BT_SEL 2>;
+        };
+        bt_sel_3: bt_sel_3 {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&out OUT_BLE>, <&bt BT_SEL 3>;
+        };
+    };
+
     keymap {
         compatible = "zmk,keymap";
 
         base_layer {
             label = "Base";
             bindings = <
-                                                                                                 &kp PRINTSCREEN  &mo L_FN   &kp C_MUTE
-&kp GRAVE  &kp N1    &kp N2    &kp N3    &kp N4       &kp N5     &kp N6  &kp N7       &kp N8     &kp N9           &kp N0     &kp BACKSPACE
-&kp TAB    &kp Q     &kp W     &kp E     &kp R        &kp T      &kp Y   &kp U        &kp I      &kp O            &kp P      &kp BACKSLASH
-&kp ESC    &kp A     &kp S     &kp D     &kp F        &kp G      &kp H   &kp J        &kp K      &kp L            &kp SEMI   &kp SQT
-&kp LSHFT  &kp Z     &kp X     &kp C     &kp V        &kp B      &kp N   &kp M        &kp COMMA  &kp PERIOD       &kp SLASH  &kp ENTER
-&kp LCTRL  &kp LGUI  &kp LALT  &kp RALT  &mo L_LOWER  &kp SPACE          &mo L_RAISE  &kp LEFT   &kp DOWN         &kp UP     &kp RIGHT
+                                                                                                 &kp PRINTSCREEN  &kp PRINTSCREEN  &kp C_MUTE
+&kp GRAVE  &kp N1    &kp N2    &kp N3    &kp N4       &kp N5     &kp N6  &kp N7       &kp N8     &kp N9           &kp N0           &kp BACKSPACE
+&kp TAB    &kp Q     &kp W     &kp E     &kp R        &kp T      &kp Y   &kp U        &kp I      &kp O            &kp P            &kp BACKSLASH
+&kp ESC    &kp A     &kp S     &kp D     &kp F        &kp G      &kp H   &kp J        &kp K      &kp L            &kp SEMI         &kp SQT
+&kp LSHFT  &kp Z     &kp X     &kp C     &kp V        &kp B      &kp N   &kp M        &kp COMMA  &kp PERIOD       &kp SLASH        &kp ENTER
+&kp LCTRL  &kp LGUI  &kp LALT  &kp RALT  &mo L_LOWER  &kp SPACE          &mo L_RAISE  &kp LEFT   &kp DOWN         &kp UP           &kp RIGHT
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOLUME_UP C_VOLUME_DOWN>;
@@ -84,7 +107,7 @@
             label = "Function";
             bindings = <
                                                                                                               &trans  &trans  &trans
-&out OUT_TOG  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3    &trans        &trans  &trans  &trans  &trans  &trans  &trans
+&out OUT_USB  &bt_sel_0     &bt_sel_1     &bt_sel_2     &bt_sel_3       &out OUT_TOG  &trans  &trans  &trans  &trans  &trans  &trans
 &trans        &trans        &trans        &trans        &trans          &trans        &trans  &trans  &trans  &trans  &trans  &trans
 &trans        &trans        &trans        &trans        &trans          &trans        &trans  &trans  &trans  &trans  &trans  &trans
 &trans        &trans        &trans        &trans        &trans          &trans        &trans  &trans  &trans  &trans  &trans  &trans
