@@ -17,6 +17,8 @@
 #include <zmk/events/activity_state_changed.h>
 #include <zmk/events/ble_active_profile_changed.h>
 #include <zmk/events/endpoint_changed.h>
+#include <zmk/events/usb_conn_state_changed.h>
+#include <zmk/events/position_state_changed.h>
 
 #include "butterfly_status.h"
 
@@ -71,10 +73,60 @@ static void butterfly_work_handler(struct k_work *work) {
         pixels[i] = make_rgb(0, 0, 0);
     }
 
+    enum zmk_transport pref = zmk_endpoint_get_preferred_transport();
     struct zmk_endpoint_instance endpoint = zmk_endpoint_get_selected();
 
+    bool show_ble = false;
+#if IS_ENABLED(CONFIG_ZMK_BLE)
+    if (pref == ZMK_TRANSPORT_BLE || endpoint.transport == ZMK_TRANSPORT_BLE) {
+        show_ble = true;
+    }
+#endif
+
+#if IS_ENABLED(CONFIG_ZMK_BLE)
+    if (show_ble) {
+        int prof = zmk_ble_active_profile_index();
+        if (prof < 0 || prof >= BUTTERFLY_NUM_LEDS) {
+            set_all_off();
+            return;
+        }
+
+        if (zmk_ble_active_profile_is_connected()) {
+            int64_t elapsed = k_uptime_get() - state_change_time;
+            bool is_dimmed = (CONFIG_BUTTERFLY_TIMEOUT_MS > 0 && elapsed >= CONFIG_BUTTERFLY_TIMEOUT_MS);
+            uint8_t brt = is_dimmed ? (uint8_t)CONFIG_BUTTERFLY_DIM_BRIGHTNESS : (uint8_t)CONFIG_BUTTERFLY_BRIGHTNESS;
+
+            if (brt > 0) {
+                uint8_t green_comp = (uint8_t)(((uint16_t)brt * 40) / 100);
+                pixels[prof] = make_rgb(0, green_comp, brt);
+            }
+            update_leds(pixels);
+
+            if (!is_dimmed && CONFIG_BUTTERFLY_TIMEOUT_MS > 0) {
+                int64_t remaining = CONFIG_BUTTERFLY_TIMEOUT_MS - elapsed;
+                if (remaining > 0) {
+                    k_work_reschedule(&butterfly_work, K_MSEC(remaining + 10));
+                }
+            }
+        } else {
+            blink_state = !blink_state;
+            if (blink_state) {
+                uint8_t brt = (uint8_t)CONFIG_BUTTERFLY_BRIGHTNESS;
+                uint8_t green_comp = (uint8_t)(((uint16_t)brt * 70) / 100);
+                pixels[prof] = make_rgb(0, green_comp, brt);
+            } else {
+                pixels[prof] = make_rgb(0, 0, 0);
+            }
+            update_leds(pixels);
+
+            k_work_reschedule(&butterfly_work, K_MSEC(CONFIG_BUTTERFLY_BLINK_MS));
+        }
+        return;
+    }
+#endif
+
 #if IS_ENABLED(CONFIG_ZMK_USB)
-    if (endpoint.transport == ZMK_TRANSPORT_USB) {
+    if (endpoint.transport == ZMK_TRANSPORT_USB || pref == ZMK_TRANSPORT_USB) {
         int64_t elapsed = k_uptime_get() - state_change_time;
         bool is_dimmed = (CONFIG_BUTTERFLY_TIMEOUT_MS > 0 && elapsed >= CONFIG_BUTTERFLY_TIMEOUT_MS);
         uint8_t brt = is_dimmed ? (uint8_t)CONFIG_BUTTERFLY_DIM_BRIGHTNESS : (uint8_t)CONFIG_BUTTERFLY_BRIGHTNESS;
@@ -94,44 +146,7 @@ static void butterfly_work_handler(struct k_work *work) {
     }
 #endif
 
-#if IS_ENABLED(CONFIG_ZMK_BLE)
-    int prof = zmk_ble_active_profile_index();
-    if (prof < 0 || prof >= BUTTERFLY_NUM_LEDS) {
-        set_all_off();
-        return;
-    }
-
-    if (zmk_ble_active_profile_is_connected()) {
-        int64_t elapsed = k_uptime_get() - state_change_time;
-        bool is_dimmed = (CONFIG_BUTTERFLY_TIMEOUT_MS > 0 && elapsed >= CONFIG_BUTTERFLY_TIMEOUT_MS);
-        uint8_t brt = is_dimmed ? (uint8_t)CONFIG_BUTTERFLY_DIM_BRIGHTNESS : (uint8_t)CONFIG_BUTTERFLY_BRIGHTNESS;
-
-        if (brt > 0) {
-            uint8_t green_comp = (uint8_t)(((uint16_t)brt * 40) / 100);
-            pixels[prof] = make_rgb(0, green_comp, brt);
-        }
-        update_leds(pixels);
-
-        if (!is_dimmed && CONFIG_BUTTERFLY_TIMEOUT_MS > 0) {
-            int64_t remaining = CONFIG_BUTTERFLY_TIMEOUT_MS - elapsed;
-            if (remaining > 0) {
-                k_work_reschedule(&butterfly_work, K_MSEC(remaining + 10));
-            }
-        }
-    } else {
-        blink_state = !blink_state;
-        if (blink_state) {
-            uint8_t brt = (uint8_t)CONFIG_BUTTERFLY_BRIGHTNESS;
-            uint8_t green_comp = (uint8_t)(((uint16_t)brt * 70) / 100);
-            pixels[prof] = make_rgb(0, green_comp, brt);
-        } else {
-            pixels[prof] = make_rgb(0, 0, 0);
-        }
-        update_leds(pixels);
-
-        k_work_reschedule(&butterfly_work, K_MSEC(CONFIG_BUTTERFLY_BLINK_MS));
-    }
-#endif
+    set_all_off();
 }
 
 void butterfly_status_refresh(void) {
@@ -151,6 +166,13 @@ static int butterfly_event_listener(const zmk_event_t *eh) {
         }
     }
 
+    const struct zmk_position_state_changed *pos_ev = as_zmk_position_state_changed(eh);
+    if (pos_ev != NULL) {
+        if (!pos_ev->state) {
+            return 0;
+        }
+    }
+
     butterfly_status_refresh();
     return 0;
 }
@@ -162,6 +184,10 @@ ZMK_SUBSCRIPTION(butterfly_status, zmk_ble_active_profile_changed);
 #if IS_ENABLED(CONFIG_ZMK_USB) || IS_ENABLED(CONFIG_ZMK_BLE)
 ZMK_SUBSCRIPTION(butterfly_status, zmk_endpoint_changed);
 #endif
+#if IS_ENABLED(CONFIG_ZMK_USB)
+ZMK_SUBSCRIPTION(butterfly_status, zmk_usb_conn_state_changed);
+#endif
+ZMK_SUBSCRIPTION(butterfly_status, zmk_position_state_changed);
 ZMK_SUBSCRIPTION(butterfly_status, zmk_activity_state_changed);
 
 static int butterfly_init(void) {
