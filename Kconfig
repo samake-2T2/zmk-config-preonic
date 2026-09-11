@@ -1,0 +1,42 @@
+# Kconfig for Keyboardio Preonic Module
+
+menuconfig KEYBOARDIO_BUTTERFLY_STATUS
+	bool "Keyboardio Butterfly Status Indicator"
+	default y
+	depends on ZMK_BLE
+	select LED_STRIP
+	select WS2812_STRIP
+	select SPI
+	help
+	  Enables dedicated Bluetooth profile and connection status indication
+	  on the 4 butterfly wing RGB LEDs (SK6812/WS2812).
+
+if KEYBOARDIO_BUTTERFLY_STATUS
+
+config BUTTERFLY_BRIGHTNESS
+	int "Active LED brightness (1-255)"
+	default 120
+	range 1 255
+	help
+	  Brightness when a wing LED is actively indicating or blinking.
+
+config BUTTERFLY_DIM_BRIGHTNESS
+	int "Dimmed LED brightness (0-255)"
+	default 20
+	range 0 255
+	help
+	  Dimmed brightness for connected profile after timeout (0 for completely off).
+
+config BUTTERFLY_BLINK_MS
+	int "Blink interval when pairing/advertising (milliseconds)"
+	default 400
+	help
+	  Interval in milliseconds between blink transitions during advertising.
+
+config BUTTERFLY_TIMEOUT_MS
+	int "Connected indicator full-brightness duration (milliseconds)"
+	default 5000
+	help
+	  Duration before the connected wing dims to save battery.
+
+endif # KEYBOARDIO_BUTTERFLY_STATUS

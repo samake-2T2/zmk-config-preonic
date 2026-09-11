@@ -18,6 +18,7 @@
 		zmk,kscan = &kscan0;
 		zmk,physical-layout = &mit_layout;
 		zmk,underglow = &led_strip;
+		zmk,butterfly = &led_strip;
 	};
 
 	#undef RC

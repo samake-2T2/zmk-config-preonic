@@ -42,12 +42,10 @@ Custom ZMK firmware configuration specifically developed for the **Keyboardio Pr
 #### 2. Lower Layer (Numpad & Navigation)
 * **Right Hand**: Dedicated 10-key numeric keypad (`KP_N0` ~ `KP_N9`, `.`, `Enter`).
 * **Left Hand**: `F1` ~ `F11`, `Home`, `End`, `Page Up`, `Page Down`, `Insert`, `Delete`.
-* **Bottom Row**: Cyan breathing effect toggle & RGB On/Off toggle.
 
 #### 3. Raise Layer (Symbols & Mouse Keys)
 * **Symbols**: Brackets, braces, parentheses, mathematical operators.
 * **Mouse Emulation**: Cursor movement (`MOVE_UP`, `MOVE_DOWN`, etc.), buttons (`LCLK`, `RCLK`, `MCLK`, `MB4`, `MB5`), and wheel scrolling (`SCRL_UP`, `SCRL_DOWN`, etc.).
-* **Bottom Row**: RGB controls and breathing toggle.
 
 #### 4. Function Layer (Official Keyboardio Preonic Layout)
 * **Number Row**:
@@ -57,6 +55,22 @@ Custom ZMK firmware configuration specifically developed for the **Keyboardio Pr
   * `LCTRL` position: `&bootloader` (Enter DFU bootloader mode)
   * `Lower` position: `&studio_unlock` (Unlock ZMK Studio)
   * `Right` position: `&bt BT_CLR` (Clear current Bluetooth bonding)
+
+---
+
+### 🦋 Butterfly Logo Bluetooth Status Indicator
+
+The Keyboardio Preonic features a distinctive butterfly logo illuminated by 4 addressable RGB LEDs (SK6812/WS2812). Our custom driver replicates the factory Kaleidoscope firmware behavior by assigning each wing piece 1:1 to a Bluetooth profile:
+
+| Wing Piece | Bluetooth Profile | Behavior: Pairing / Advertising | Behavior: Connected |
+|:---:|:---:|:---:|:---:|
+| **Wing 0** | Profile 0 (`BT_SEL 0`) | Blinks Azure/Cyan (400ms interval) | Solid Sapphire Blue (dims after 5s) |
+| **Wing 1** | Profile 1 (`BT_SEL 1`) | Blinks Azure/Cyan (400ms interval) | Solid Sapphire Blue (dims after 5s) |
+| **Wing 2** | Profile 2 (`BT_SEL 2`) | Blinks Azure/Cyan (400ms interval) | Solid Sapphire Blue (dims after 5s) |
+| **Wing 3** | Profile 3 (`BT_SEL 3`) | Blinks Azure/Cyan (400ms interval) | Solid Sapphire Blue (dims after 5s) |
+
+* **USB Mode**: All 4 wings illuminate in Emerald Green.
+* **Battery Saver**: Automatically dims to ambient brightness after 5s of connection, and shuts off completely in deep sleep.
 
 ---
 
@@ -114,12 +128,10 @@ Custom ZMK firmware configuration specifically developed for the **Keyboardio Pr
 #### 2. 로워 레이어 (Lower Layer - 숫자 패드 & 내비게이션)
 * **우측 손**: 텐키리스 숫자 키패드(`KP_N0` ~ `KP_N9`, `.`, `Enter`).
 * **좌측 손**: `F1` ~ `F11`, `Home`, `End`, `Page Up`, `Page Down`, `Insert`, `Delete`.
-* **하단 열**: 하늘색 숨쉬기 효과 활성화 및 RGB On/Off 토글.
 
 #### 3. 레이즈 레이어 (Raise Layer - 특수기호 & 마우스)
 * **특수 기호**: 괄호(`[]`, `{}`, `()`), 연산 기호 등 프로그래밍에 유용한 기호 배치.
 * **마우스 제어**: 커서 이동(`MOVE_UP`, `MOVE_DOWN` 등), 클릭(`좌클릭`, `우클릭`, `휠클릭`, `앞/뒤로가기`), 휠 스크롤.
-* **하단 열**: RGB 효과 제어 및 조작.
 
 #### 4. 펑션 레이어 (Function Layer - 공식 순정 키맵 규격)
 * **숫자 행**:
@@ -129,6 +141,22 @@ Custom ZMK firmware configuration specifically developed for the **Keyboardio Pr
   * `LCTRL` 자리: **`&bootloader`** (USB 외장 드라이브 부트로더 모드 진입)
   * `Lower` 자리: **`&studio_unlock`** (ZMK Studio 잠금 해제)
   * `Right` 자리: **`&bt BT_CLR`** (현재 연결된 블루투스 페어링 정보 삭제)
+
+---
+
+### 🦋 나비 로고 블루투스 상태 표시기 (1:1 매핑)
+
+Keyboardio Preonic 상단 중앙의 나비 로고에는 4개의 어드레서블 RGB LED(SK6812/WS2812)가 내장되어 있습니다. 본 설정의 커스텀 드라이버는 공장 순정 Kaleidoscope 펌웨어의 동작 방식을 완벽히 재현하여 4개의 날개 조각을 블루투스 프로필 0~3번에 1:1로 매핑합니다:
+
+| 날개 조각 위치 | 할당 프로필 | 페어링 대기 / 탐색 중 동작 | 연결 완료(Connected) 동작 |
+|:---:|:---:|:---:|:---:|
+| **날개 0번 (Wing 0)** | 0번 슬롯 (`BT_SEL 0`) | 하늘색/청록색 깜빡임 (400ms 주기) | 사파이어 블루 점등 (5초 후 은은한 밝기로 전환) |
+| **날개 1번 (Wing 1)** | 1번 슬롯 (`BT_SEL 1`) | 하늘색/청록색 깜빡임 (400ms 주기) | 사파이어 블루 점등 (5초 후 은은한 밝기로 전환) |
+| **날개 2번 (Wing 2)** | 2번 슬롯 (`BT_SEL 2`) | 하늘색/청록색 깜빡임 (400ms 주기) | 사파이어 블루 점등 (5초 후 은은한 밝기로 전환) |
+| **날개 3번 (Wing 3)** | 3번 슬롯 (`BT_SEL 3`) | 하늘색/청록색 깜빡임 (400ms 주기) | 사파이어 블루 점등 (5초 후 은은한 밝기로 전환) |
+
+* **USB 유선 모드**: 4개 날개 전체가 에메랄드 그린(Green)으로 점등.
+* **스마트 배터리 절전**: 연결 완료 5초 후 저전력 은은한 밝기로 자동 감광되며, 키보드가 딥슬립(Deep Sleep)에 진입하면 모든 LED가 완전히 꺼져 배터리 소모를 0으로 유지합니다.
 
 ---
 
@@ -153,12 +181,17 @@ Custom ZMK firmware configuration specifically developed for the **Keyboardio Pr
 
 ```text
 ├── .github/workflows/build.yml   # GitHub Actions 빌드 자동화 워크플로우
-├── boards/keyboardio/           # Keyboardio Preonic 보드 및 DTS 정의
+├── CMakeLists.txt                # Zephyr 빌드 타겟 및 소스 등록
+├── Kconfig                       # 나비 인디케이터 Kconfig 메뉴 및 옵션 정의
+├── include/                      # 나비 상태 표시기 C 헤더 파일
+├── src/                          # 나비 상태 표시기 C 소스 (butterfly_status.c)
+├── boards/keyboardio/            # Keyboardio Preonic 보드 및 DTS 정의
 ├── config/
 │   ├── keyboardio_preonic.keymap # 4단계 레이어 키 매핑 정의
-│   ├── keyboardio_preonic.conf   # 블루투스, RGB, NKRO, 마우스 설정
+│   ├── keyboardio_preonic.conf   # 블루투스, 나비 인디케이터, NKRO 설정
 │   ├── keyboardio_preonic.json   # Keymap Editor용 레이아웃 메타데이터
 │   ├── info.json                 # GUI 도구 호환용 표준 메타데이터
 │   └── west.yml                  # ZMK 빌드 매니페스트
+├── zephyr/                       # Zephyr 모듈 매니페스트 (module.yml)
 └── build.yaml                    # 빌드 타겟 보드 및 스니펫 지정
 ```
