@@ -9,7 +9,12 @@
 <a name="english"></a>
 ## English
 
-Custom ZMK firmware configuration for the **Keyboardio Preonic**, a 5×12 ortholinear mechanical keyboard featuring a rotary encoder and two auxiliary top-row keys.
+Custom ZMK firmware configuration specifically developed for the **Keyboardio Preonic**, manufactured by [Keyboardio](https://keyboard.io).
+
+> [!IMPORTANT]
+> **Hardware Compatibility Note**:
+> This repository is exclusively configured for the **Keyboardio Preonic** (designed by Keyboardio), featuring an onboard nRF52840 BLE controller, EC11 rotary encoder, 2 dedicated auxiliary top keys, and central butterfly logo RGB underglow.
+> **It is NOT compatible with standard Drop / OLKB Preonic boards**, which use completely different controllers, matrix wiring, and lack wireless/rotary hardware.
 
 ### ✨ Features
 
@@ -18,7 +23,7 @@ Custom ZMK firmware configuration for the **Keyboardio Preonic**, a 5×12 orthol
 * **Enhanced Wireless Connection**: Bluetooth Low Energy (BLE) with 5 profile slots and **+8 dBm** transmit power for maximum stability.
 * **Low-Latency Debouncing**: Optimized debouncing (1 ms press / 5 ms release) for rapid response and debounce error prevention.
 * **Full NKRO**: N-Key Rollover enabled for simultaneous keypress accuracy.
-* **RGB Underglow**: Butterfly logo illuminated on startup with a signature cyan breathing effect (`HSV: 195, 100, 100`).
+* **RGB Underglow**: Keyboardio butterfly logo illuminated on startup with signature cyan breathing effect (`HSV: 195, 100, 100`).
 * **Mouse Emulation (ZMK Pointing)**: Integrated mouse cursor movement, clicking, and scrolling on the Raise layer.
 * **Tri-Layer Support**: Simultaneously holding `Lower` and `Raise` automatically activates the `Function` layer.
 * **GUI Configurator Compatibility**:
@@ -76,7 +81,12 @@ Custom ZMK firmware configuration for the **Keyboardio Preonic**, a 5×12 orthol
 <a name="한국어"></a>
 ## 한국어
 
-**Keyboardio Preonic** 기계식 키보드를 위한 사용자 정의 ZMK 펌웨어 설정 저장소입니다. 5×12 직교(Ortholinear) 배열과 로터리 인코더, 상단 보조 키를 완벽하게 지원합니다.
+[Keyboardio(키보디오)](https://keyboard.io) 사에서 개발 및 제조한 **Keyboardio Preonic** 기계식 키보드 전용 ZMK 펌웨어 설정 저장소입니다.
+
+> [!IMPORTANT]
+> **하드웨어 호환성 안내**:
+> 본 저장소는 **Keyboardio사의 Preonic 모델 전용**으로 구성되어 있습니다. nRF52840 무선 BLE SoC, 상단 2개 보조 버튼(PrintScreen, Fn), EC11 로터리 인코더 노브, 중앙 나비 로고 RGB 언더글로우를 포함한 Keyboardio 고유의 기판/핀맵 사양을 지원합니다.
+> **일반 Drop / OLKB Preonic 키보드와는 호환되지 않습니다** (컨트롤러, 매트릭스 핀 배치 및 무선/인코더 지원 여부가 완전히 다릅니다).
 
 ### ✨ 주요 기능
 
@@ -85,7 +95,7 @@ Custom ZMK firmware configuration for the **Keyboardio Preonic**, a 5×12 orthol
 * **안정적인 무선 연결**: 블루투스 저전력(BLE) 5개 프로필 슬롯 및 **+8 dBm 최대 송신 출력** 설정으로 연결 끊김 최소화.
 * **초저지연 디바운스**: 1ms 누름 / 5ms 릴리즈 설정으로 키 입력 반응성 극대화 및 채터링 방지.
 * **NKRO 완벽 지원**: 무한 동시 입력(N-Key Rollover) 지원.
-* **나비 로고 RGB 언더글로우**: 부팅 시 시그니처 스카이블루 숨쉬기(Cyan Breathing, `HSV: 195, 100, 100`) 효과 자동 점등.
+* **Keyboardio 나비 로고 RGB 언더글로우**: 부팅 시 시그니처 스카이블루 숨쉬기(Cyan Breathing, `HSV: 195, 100, 100`) 효과 자동 점등.
 * **마우스 에뮬레이션 (ZMK Pointing)**: Raise 레이어에서 마우스 커서 이동, 클릭, 휠 스크롤 지원.
 * **트라이 레이어(Tri-Layer)**: `Lower` 키와 `Raise` 키를 동시에 누르면 자동으로 `Function` 레이어로 전환.
 * **웹 GUI 도구 완벽 호환**:
